@@ -11,10 +11,12 @@ export class HomeComponent implements OnInit {
   }
 
   getAccounts(){
-    return this.http.get(`http://localhost:3000/test/users/`);
+    return this.http.get('/api/users', { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
   }
 
   ngOnInit() {
-
+    this.users.subscribe((res) => {
+      console.log(res);
+    })
   }
 }

@@ -12,7 +12,14 @@ import { HomeComponent } from './home/home.component';
 import { AuthenticationService } from './authentication.service';
 import { AuthGuardService } from './auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatTableModule} from "@angular/material";
+import {
+  MatButtonModule,
+  MatCheckboxModule,
+  MatIconModule,
+  MatListModule,
+  MatTableModule,
+  MatToolbarModule
+} from "@angular/material";
 import {ConfirmationComponent} from "./confirmation/confirmation.component";
 
 const routes: Routes = [
@@ -39,6 +46,11 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MatTableModule,
+    MatToolbarModule,
+    MatListModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [
     AuthenticationService,

@@ -2,12 +2,12 @@ var express = require('express');
 var router = express.Router();
 var jwt = require('express-jwt');
 var auth = jwt({
-  secret: 'MY_SECRET',
-  userProperty: 'payload'
+    secret: 'MY_SECRET',
+    userProperty: 'payload'
 });
 
-var ctrlProfile = require('../controllers/profile');
-var ctrlAuth = require('../controllers/authentication');
+let ctrlProfile = require('../controllers/profile');
+let ctrlAuth = require('../controllers/authentication');
 var ctrlVerification = require('../controllers/verification');
 
 // profile
@@ -22,7 +22,9 @@ router.post('/login', ctrlAuth.login);
 //email verification
 router.post('/confirmation', ctrlVerification.confirmationPost);
 router.post('/resend', ctrlVerification.resendTokenPost);
-router.post('/', (req, res)=> {
-    console.log('button')
-});
+
+//work with users
+router.post('/block', auth, ctrlProfile.blockUsers);
+router.post('/unblock', auth, ctrlProfile.unBlockUsers);
+router.post('/delete', auth, ctrlProfile.deleteUsers);
 module.exports = router;

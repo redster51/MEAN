@@ -11,7 +11,8 @@ import {MAT_CHECKBOX_CLICK_ACTION} from "@angular/material";
 })
 export class HomeComponent implements OnInit {
   users;
-  array = [];
+  array: Array<String> = this.array.getCheckedUsers();  //по идее должен прилетать массив строк.
+                                                        //ты что-то говорил про то, что приетает объект. но нужен массив
 
   constructor(private http: HttpClient) {
   }
@@ -21,13 +22,23 @@ export class HomeComponent implements OnInit {
       {headers: {Authorization: `Bearer ${localStorage.getItem('mean-token')}`}});
   }
 
-  arrayForEvent(email) {
-    this.array.push(email);
-    console.log(this.array);
+
+  deleteUsers() {
+    this.http.post('/api/delete', 'qwerty',
+      {headers: {Authorization: `Bearer ${localStorage.getItem('mean-token')}`}})
+      .subscribe(r => console.log('delete-button') );
   }
 
-  postMethod() {
-    this.http.post('/api/', this.getCheckedUsers()).subscribe(r => console.log('button'));
+  blockUsers() {
+    this.http.post('/api/block', this.getCheckedUsers(),
+      {headers: {Authorization: `Bearer ${localStorage.getItem('mean-token')}`}})
+      .subscribe(r => console.log('button') );
+  }
+
+  unblockUsers() {
+    this.http.post('/api/unblock', this.getCheckedUsers(),
+      {headers: {Authorization: `Bearer ${localStorage.getItem('mean-token')}`}})
+      .subscribe(r => console.log('button') );
   }
 
   getCheckedUsers() {

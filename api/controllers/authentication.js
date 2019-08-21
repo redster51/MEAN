@@ -1,10 +1,10 @@
-var crypto = require('crypto');
-var nodemailer = require('nodemailer');
-var mongoose = require('mongoose');
-var User = mongoose.model('User');
-var Token = mongoose.model('Token');
+let crypto = require('crypto');
+let nodemailer = require('nodemailer');
+let mongoose = require('mongoose');
+let User = mongoose.model('User');
+let Token = mongoose.model('Token');
 
-var sendJSONresponse = function (res, status, content) {
+let sendJSONresponse = function (res, status, content) {
     res.status(status);
     res.json(content);
 };

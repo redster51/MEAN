@@ -22,13 +22,7 @@ router.post('/login', ctrlAuth.login);
 //email verification
 router.post('/confirmation', ctrlVerification.confirmationPost);
 router.post('/resend', ctrlVerification.resendTokenPost);
-router.post('/', (req, res) => {
-  if (req.body.block) {
-    console.log('block')
-  }else if (req.body.unblock){
-    console.log('unblock')
-  }else if(req.body.delete){
-    res.send('delete')
-  }
-})
+router.post('/', (req, res)=> {
+    console.log('button')
+});
 module.exports = router;

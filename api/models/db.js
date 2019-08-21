@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var gracefulShutdown;
-// var dbURI = 'mongodb+srv://redster51:222149id@cluster0-ykvld.mongodb.net/test?retryWrites=true&w=majority';
 var dbURI = 'mongodb://redster51:222149id@cluster0-shard-00-00-ykvld.mongodb.net:27017,cluster0-shard-00-01-ykvld.mongodb.net:27017,cluster0-shard-00-02-ykvld.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
 if (process.env.NODE_ENV === 'production') {
   dbURI = process.env.MONGOLAB_URI;

@@ -3,7 +3,7 @@
     <mat-list>
       <h1 mat-subheader>Users</h1>
       <mat-list-item *ngFor="let user of users">
-        <mat-checkbox [value]="user" (change)="arrayForEvent(user.email)"></mat-checkbox>
+        <mat-checkbox  [(ngModel)] = "user.checked"></mat-checkbox>
         <mat-icon mat-list-icon>account_circle</mat-icon>
         <h4 mat-line>{{user.name}}</h4>
         <p mat-line> {{user.email}} </p>

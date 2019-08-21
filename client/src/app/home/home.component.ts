@@ -16,18 +16,22 @@ export class HomeComponent implements OnInit {
   constructor(private http: HttpClient) {
   }
 
-  getAccounts(){
+  getAccounts() {
     return this.http.get('/api/users',
-      { headers: { Authorization: `Bearer ${localStorage.getItem('mean-token')}` }});
+      {headers: {Authorization: `Bearer ${localStorage.getItem('mean-token')}`}});
   }
 
-  arrayForEvent(email){
+  arrayForEvent(email) {
     this.array.push(email);
     console.log(this.array);
   }
 
-  postMethod(){
-    this.http.post('/api/', this.users).subscribe(r => console.log('button'));
+  postMethod() {
+    this.http.post('/api/', this.getCheckedUsers()).subscribe(r => console.log('button'));
+  }
+
+  getCheckedUsers() {
+    return this.users.filter(user => user.checked);
   }
 
   ngOnInit() {

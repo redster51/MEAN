@@ -15,17 +15,17 @@ var userSchema = new mongoose.Schema({
   hash: String,
   salt: String,
   isLoggedIn: Boolean,
+    isVerified: { type: Boolean, default: false },
+    password: String,
+    passwordResetToken: String,
+    passwordResetExpires: Date
 });
 
-userSchema.methods.setPassword = function(password){
-  this.salt = crypto.randomBytes(16).toString('hex');
-  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
-};
-
-userSchema.methods.validPassword = function(password) {
-  var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
-  return this.hash === hash;
-};
+var tokenSchema = new mongoose.Schema({
+    _userId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User' },
+    token: { type: String, required: true },
+    createdAt: { type: Date, required: true, default: Date.now, expires: 43200 }
+});
 
 userSchema.methods.generateJwt = function() {
   var expiry = new Date();
@@ -40,3 +40,4 @@ userSchema.methods.generateJwt = function() {
 };
 
 mongoose.model('User', userSchema);
+mongoose.model('Token', tokenSchema);

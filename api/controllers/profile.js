@@ -18,12 +18,6 @@ module.exports.profileRead = function(req, res) {
 
 module.exports.getUsers = function(req, res) {
     User.find({}, function(err, users) {
-        var userMap = {};
-
-        users.forEach(function(user) {
-            userMap[user._id] = user;
-        });
-
-        res.send(userMap);
+        res.send(users);
     });
 };

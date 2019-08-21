@@ -1,18 +1,21 @@
-<div class="list">
-  <mat-list>
-    <h3 mat-subheader>Users</h3>
-    <mat-list-item *ngFor="let user of users">
-      <mat-checkbox></mat-checkbox>
-      <mat-icon mat-list-icon>account_circle</mat-icon>
-      <h4 mat-line>{{user.name}}</h4>
-      <p mat-line> {{user.email}} </p>
-    </mat-list-item>
-  </mat-list>
-</div>
+<div class="mat-background-accent">
+  <div class="list">
+    <mat-list>
+      <h1 mat-subheader>Users</h1>
+      <mat-list-item *ngFor="let user of users">
+        <mat-checkbox></mat-checkbox>
+        <mat-icon mat-list-icon>account_circle</mat-icon>
+        <h4 mat-line>{{user.name}}</h4>
+        <p mat-line> {{user.email}} </p>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </div>
 
-<div class="button-row" align="center">
-  <h3>Events</h3>
-  <button mat-raised-button color="primary">Block</button>
-  <button mat-raised-button color="accent">Unblock</button>
-  <button mat-raised-button color="warn">Delete</button>
+  <div class="button-row" align="center">
+    <h3>Events</h3>
+    <button mat-raised-button color="primary">Block</button>
+    <button mat-raised-button color="accent">Unblock</button>
+    <button mat-raised-button color="warn">Delete</button>
+  </div>
 </div>

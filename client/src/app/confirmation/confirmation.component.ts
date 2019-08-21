@@ -13,9 +13,10 @@ export class ConfirmationComponent {
         console.log(res);
         //что-то с респонсом
         this.ngZone.run(() => {
-          this.router.navigateByUrl('/login');
+
         });
-      })
+      });
+      this.router.navigateByUrl('/login');
     });
   }
 }

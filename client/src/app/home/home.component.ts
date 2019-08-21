@@ -5,7 +5,7 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
-  users = this.getAccounts();
+  users;
 
   constructor(private http: HttpClient) {
   }
@@ -15,7 +15,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.users.subscribe((res) => {
+    this.getAccounts().subscribe((res) => {
+      this.users = res;
       console.log(res);
     })
   }

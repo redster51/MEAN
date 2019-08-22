@@ -19,6 +19,7 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span class="span"><a routerLink="/">Home</a></span>
+    <span class="span" *ngIf="auth.isLoggedIn()"><a routerLink="/chat">Chat</a></span>
     <span class="span" *ngIf="!auth.isLoggedIn()"><a routerLink="/login">Sign in</a></span>
     <span class="span" *ngIf="auth.isLoggedIn()"><a routerLink="/profile">{{ auth.getUserDetails()?.name }}</a></span>
     <span class="span" *ngIf="auth.isLoggedIn()"><a (click)="auth.logout()">Logout</a></span>

@@ -25,14 +25,16 @@ import {AlertsModule} from "angular-alert-module";
 import {ChatComponent} from "./chat/chat.component";
 import {ChatModule} from "./chat/chat.module";
 import {SharedModule} from "./chat/shared/shared.module";
+import { RedirectComponent } from './redirect/redirect.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'confirmation/:token', component: ConfirmationComponent},
-  {path: 'chat', component: ChatComponent},
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]}
+  {path: 'chat', component: ChatComponent, canActivate: [AuthGuardService]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
+  {path: '*', component: RedirectComponent}
 ];
 
 @NgModule({
@@ -42,7 +44,8 @@ const routes: Routes = [
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ConfirmationComponent
+    ConfirmationComponent,
+    RedirectComponent
   ],
   imports: [
     BrowserModule,

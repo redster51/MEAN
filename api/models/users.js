@@ -16,7 +16,7 @@ var userSchema = new mongoose.Schema({
     salt: String,
     isLoggedIn: Boolean,
     isVerified: {type: Boolean, default: false},
-    isBlocked: {type: Boolean, default: false, required: true},
+    isBlocked: {type: Boolean, default: false},
     password: String,
     passwordResetToken: String,
     passwordResetExpires: Date

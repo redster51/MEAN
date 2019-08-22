@@ -62,11 +62,11 @@ export class AuthenticationService {
     }
   }
 
-  private request(method: 'post' | 'get', type: 'login' | 'register' | 'profile', user?: TokenPayload): Observable<any> {
+  private request(method: 'post' | 'get', type, object?): Observable<any> {
     let base;
 
     if (method === 'post') {
-      base = this.http.post(`/api/${type}`, user, {headers: {Authorization: `Bearer ${this.getToken()}`}}); //добавил сюда такой же токен как и в ГЕТ запросе
+      base = this.http.post(`/api/${type}`, object, {headers: {Authorization: `Bearer ${this.getToken()}`}}); //добавил сюда такой же токен как и в ГЕТ запросе
     } else {
       base = this.http.get(`/api/${type}`, {headers: {Authorization: `Bearer ${this.getToken()}`}});
     }
@@ -93,6 +93,22 @@ export class AuthenticationService {
 
   public profile(): Observable<any> {
     return this.request('get', 'profile');
+  }
+
+  public getAccounts(): Observable<any> {
+    return this.request('get', 'users');
+  }
+
+  public deleteUsers(users): Observable<any> {
+    return this.request('post', 'delete', users);
+  }
+
+  public blockUsers(users): Observable<any> {
+    return this.request('post', 'block', users);
+  }
+
+  public unblockUsers(users): Observable<any> {
+    return this.request('post', 'unblock', users);
   }
 
   public logout(): void {

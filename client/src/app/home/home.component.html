@@ -5,7 +5,7 @@
       <mat-list-item *ngFor="let user of users">
         <mat-checkbox  [(ngModel)] = "user.checked"></mat-checkbox>
         <mat-icon mat-list-icon>account_circle</mat-icon>
-        <h4 mat-line>{{user.name}}</h4>
+        <h4 mat-line [ngStyle]="{'color': user.isBlocked ? 'red' : 'black' }">{{user.name}}</h4>
         <p mat-line> {{user.email}} </p>
         <mat-divider></mat-divider>
       </mat-list-item>

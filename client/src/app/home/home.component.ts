@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {MAT_CHECKBOX_CLICK_ACTION} from "@angular/material";
+import {AuthenticationService} from "../authentication.service";
 
 @Component({
   templateUrl: './home.component.html',
@@ -11,34 +12,26 @@ import {MAT_CHECKBOX_CLICK_ACTION} from "@angular/material";
 })
 export class HomeComponent implements OnInit {
   users;
-  array: Array<String> = this.array.getCheckedUsers();  //по идее должен прилетать массив строк.
-                                                        //ты что-то говорил про то, что приетает объект. но нужен массив
 
-  constructor(private http: HttpClient) {
+  constructor(private auth: AuthenticationService) {
   }
-
-  getAccounts() {
-    return this.http.get('/api/users',
-      {headers: {Authorization: `Bearer ${localStorage.getItem('mean-token')}`}});
-  }
-
 
   deleteUsers() {
-    this.http.post('/api/delete', 'qwerty',
-      {headers: {Authorization: `Bearer ${localStorage.getItem('mean-token')}`}})
-      .subscribe(r => console.log('delete-button') );
+    this.auth.deleteUsers(this.getCheckedUsers())
+      .subscribe(r => console.log('delete-button'));
+    this.initUsers();
   }
 
   blockUsers() {
-    this.http.post('/api/block', this.getCheckedUsers(),
-      {headers: {Authorization: `Bearer ${localStorage.getItem('mean-token')}`}})
-      .subscribe(r => console.log('button') );
+    this.auth.blockUsers(this.getCheckedUsers())
+      .subscribe(r => console.log('button'));
+    this.initUsers();
   }
 
   unblockUsers() {
-    this.http.post('/api/unblock', this.getCheckedUsers(),
-      {headers: {Authorization: `Bearer ${localStorage.getItem('mean-token')}`}})
-      .subscribe(r => console.log('button') );
+    this.auth.unblockUsers(this.getCheckedUsers())
+      .subscribe(r => console.log('button'));
+    this.initUsers();
   }
 
   getCheckedUsers() {
@@ -46,7 +39,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAccounts().subscribe((res) => {
+    this.initUsers();
+  }
+
+  private initUsers() {
+    this.auth.getAccounts().subscribe((res) => {
       this.users = res;
       console.log(res);
     })

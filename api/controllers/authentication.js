@@ -4,11 +4,6 @@ let mongoose = require('mongoose');
 let User = mongoose.model('User');
 let Token = mongoose.model('Token');
 
-let sendJSONresponse = function (res, status, content) {
-    res.status(status);
-    res.json(content);
-};
-
 module.exports.register = function (req, res) {
 
     User.findOne({email: req.body.email}, function (err, user) {

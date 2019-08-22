@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-const forEach = require("mongoose");
 var User = mongoose.model('User');
 
 module.exports.profileRead = function (req, res) {
@@ -24,32 +23,29 @@ module.exports.getUsers = function (req, res) {
 };
 
 module.exports.blockUsers = function (req, res) {
-    req.forEach(function (user, i, req) {
-        User.findOneAndUpdate({email: user.body}, {$set: {isBlocked: true}},
-            (err, user) => {
-                if (!user) return res.status(401).send("Can not block!");
-                res.status(200).send("OK!")
-            })
-    })
+    setIsBlockUsers(req, res, true);
 };
 
 module.exports.unBlockUsers = function (req, res) {
-    req.forEach(function (user, i, req) {
-        User.findOneAndUpdate({email: user.body}, {$set: {isBlocked: false}},
-            (err, user) => {
-                if (!user) return res.status(401).send("Can not unblock!");
-                res.status(200).send("OK!")
-            })
-    })
+    setIsBlockUsers(req, res, false);
 };
 
 module.exports.deleteUsers = function (req, res) { // Этот метод должен идеально работать если я правильно понял суть запросов
-    //req.forEach(function (user, i, req) {
-        User.remove({email: req.body},
-            (err, user) => {
-                if (!user) return res.status(401).send("Can not remove!");
-                res.status(200).send("OK!")
-            })
-    //});
+    req.body.forEach(user => {
+        User.remove({email: user.email}, (err, user) => {
+            if (!user) return res.status(401).send({msg: err.message});
+            res.status(200);
+        })
+    });
 };
+
+function setIsBlockUsers(req, res, isBlocked) {
+    req.body.forEach(user => {
+        User.findOneAndUpdate({email: user.email}, {$set: {isBlocked: isBlocked}},
+            (err, user) => {
+                if (!user) return res.status(401).send({msg: err.message});
+                res.status(200);
+            })
+    });
+}
 

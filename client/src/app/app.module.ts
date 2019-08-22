@@ -21,6 +21,7 @@ import {
   MatToolbarModule
 } from "@angular/material";
 import {ConfirmationComponent} from "./confirmation/confirmation.component";
+import {AlertsModule} from "angular-alert-module";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -44,6 +45,7 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
+    AlertsModule.forRoot(),
     BrowserAnimationsModule,
     MatTableModule,
     MatToolbarModule,

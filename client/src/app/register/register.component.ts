@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {AuthenticationService, TokenPayload} from '../authentication.service';
 import {Router} from '@angular/router';
+import {AlertsService} from "angular-alert-module";
 
 
 @Component({
@@ -13,17 +14,13 @@ export class RegisterComponent {
     password: ''
   };
 
-  constructor(private auth: AuthenticationService, private router: Router) {
+  constructor(private auth: AuthenticationService, private router: Router, private alerts: AlertsService) {
   }
 
   register() {
     this.auth.register(this.credentials).subscribe((t) => {
       console.log(t);
-
-      //   this.router.navigateByUrl('/profile');
-      // }, (err) => {
-      //   console.error(err);
-      // });
     });
+    this.alerts.setMessage('Check your email please...','success');
   }
 }

@@ -52,7 +52,7 @@ module.exports.register = function (req, res) {
 module.exports.login = function (req, res) {
     User.findOne({email: req.body.email}, function (err, user) {
         if (!user) return res.status(401).send({msg: 'The email address ' + req.body.email + ' is not associated with any account. Double-check your email address and try again.'});
-
+        if (user.isBlocked) return res.status(401).send({msg: 'Banned!'});
         if (user.password === req.body.password) {
             // Make sure the user has been verified
             if (!user.isVerified) return res.status(401).send({

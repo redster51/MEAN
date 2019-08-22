@@ -8,6 +8,8 @@ import { User } from './shared/model/user';
 import { SocketService } from './shared/services/socket.service';
 import { DialogUserComponent } from './dialog-user/dialog-user.component';
 import { DialogUserType } from './dialog-user/dialog-user-type';
+import {HttpClient} from "@angular/common/http";
+import {AuthenticationService} from "../authentication.service";
 
 
 const AVATAR_URL = 'https://api.adorable.io/avatars/285';
@@ -18,6 +20,7 @@ const AVATAR_URL = 'https://api.adorable.io/avatars/285';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit, AfterViewInit {
+  chatInfo;
   action = Action;
   user: User;
   messages: Message[] = [];
@@ -39,14 +42,24 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @ViewChildren(MatListItem, { read: ElementRef }) matListItems: QueryList<MatListItem>;
 
   constructor(private socketService: SocketService,
-    public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private http: HttpClient,
+              private auth: AuthenticationService) { }
 
   ngOnInit(): void {
+    this.initChatInfo();
     this.initModel();
     // Using timeout due to https://github.com/angular/angular/issues/14748
     setTimeout(() => {
       this.openUserPopup(this.defaultDialogUserParams);
     }, 0);
+  }
+
+  private initChatInfo() {
+    this.auth.getChatInfo().subscribe(res => {
+      this.chatInfo = res;
+      console.log(this.chatInfo);
+    })
   }
 
   ngAfterViewInit(): void {

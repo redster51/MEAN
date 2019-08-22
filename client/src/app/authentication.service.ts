@@ -83,6 +83,10 @@ export class AuthenticationService {
     return request;
   }
 
+  public getChatInfo(): Observable<any> {
+    return this.request('get', 'messages');
+  }
+
   public register(user: TokenPayload): Observable<any> {
     return this.request('post', 'register', user);
   }

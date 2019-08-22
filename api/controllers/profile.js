@@ -32,9 +32,14 @@ module.exports.unBlockUsers = function (req, res) {
 
 module.exports.deleteUsers = function (req, res) { // Этот метод должен идеально работать если я правильно понял суть запросов
     req.body.forEach(user => {
+        let token;
+        User.findOne({email: user.email}, (err, user) => {
+            if (!user) return res.status(401).send({msg: err.message});
+            token = user.generateJwt();
+        });
         User.remove({email: user.email}, (err, user) => {
             if (!user) return res.status(401).send({msg: err.message});
-            res.status(200);
+            res.status(200).send({token: token});
         })
     });
 };
@@ -44,7 +49,7 @@ function setIsBlockUsers(req, res, isBlocked) {
         User.findOneAndUpdate({email: user.email}, {$set: {isBlocked: isBlocked}},
             (err, user) => {
                 if (!user) return res.status(401).send({msg: err.message});
-                res.status(200);
+                res.status(200).send({token: user.generateJwt()});
             })
     });
 }

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {MAT_CHECKBOX_CLICK_ACTION} from "@angular/material";
 import {AuthenticationService} from "../authentication.service";
 
@@ -18,20 +17,17 @@ export class HomeComponent implements OnInit {
 
   deleteUsers() {
     this.auth.deleteUsers(this.getCheckedUsers())
-      .subscribe(r => console.log('delete-button'));
-    this.initUsers();
+      .subscribe(() => this.initUsers());
   }
 
   blockUsers() {
     this.auth.blockUsers(this.getCheckedUsers())
-      .subscribe(r => console.log('button'));
-    this.initUsers();
+      .subscribe(() => this.initUsers());
   }
 
   unblockUsers() {
     this.auth.unblockUsers(this.getCheckedUsers())
-      .subscribe(r => console.log('button'));
-    this.initUsers();
+      .subscribe(() => this.initUsers());
   }
 
   getCheckedUsers() {

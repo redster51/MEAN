@@ -142,14 +142,26 @@ export class ChatComponent implements OnInit, AfterViewInit {
     if (!message) {
       return;
     }
-
     this.socketService.send({
       from: this.user,
-      content: message
+      content: message,
+      date: this.getCurrentTime()
     });
     this.messageContent = null;
   }
 
+  private getCurrentTime(): string{
+    let date = new Date();
+
+    let options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    };
+    return date.toLocaleDateString('en-US', options)
+  }
   public sendNotification(params: any, action: Action): void {
     let message: Message;
 

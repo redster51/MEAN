@@ -34,7 +34,6 @@ module.exports.deleteUsers = function (req, res) { // Этот метод дол
     req.body.forEach(user => {
         let token;
         User.findOne({email: user.email}, (err, user) => {
-            if (!user) return res.status(401).send({msg: err.message});
             token = user.generateJwt();
         });
         User.remove({email: user.email}, (err, user) => {

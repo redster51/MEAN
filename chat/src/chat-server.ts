@@ -44,6 +44,8 @@ export class ChatServer {
             console.log('Running server on port %s', this.port);
         });
         var chatModel = new mongoose.Schema({
+            id: {type: Number},
+            avatar: {type: String},
             name: {type: String},
             content: {type: String}
         });
@@ -52,7 +54,9 @@ export class ChatServer {
         this.io.on('connect', (socket: any) => {
             console.log('Connected client on port %s.', this.port);
             socket.on('message', (m) => {
-                new ChatModel({name: m.from.name, content: m.content}).save();
+                if (m.content) {
+                    new ChatModel({id: m.from.id, name: m.from.name, content: m.content, avatar: m.from.avatar}).save();
+                }
                 this.io.emit('message', m);
             });
 

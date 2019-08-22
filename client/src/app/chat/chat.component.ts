@@ -47,18 +47,19 @@ export class ChatComponent implements OnInit, AfterViewInit {
               private auth: AuthenticationService) { }
 
   ngOnInit(): void {
-    this.initChatInfo();
     this.initModel();
     // Using timeout due to https://github.com/angular/angular/issues/14748
     setTimeout(() => {
+      this.initChatInfo();
       this.openUserPopup(this.defaultDialogUserParams);
     }, 0);
   }
 
   private initChatInfo() {
     this.auth.getChatInfo().subscribe(res => {
-      this.chatInfo = res;
-      console.log(this.chatInfo);
+      this.messages = res.map(mes => {
+        return {content: mes.content, from: {id: mes.id, name: mes.name, avatar: mes.avatar}}
+      });
     })
   }
 

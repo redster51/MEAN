@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var ChatModel = mongoose.model('ChatModel', new mongoose.Schema({
+    id: {type: Number},
+    avatar: {type: String},
     name: {type: String},
     content: {type: String}
 }));

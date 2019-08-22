@@ -1,3 +1,6 @@
+var mongoose = require('mongoose');
+var dbURI = 'mongodb://redster51:222149id@cluster0-shard-00-00-ykvld.mongodb.net:27017,cluster0-shard-00-01-ykvld.mongodb.net:27017,cluster0-shard-00-02-ykvld.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority';
+
 import { createServer, Server } from 'http';
 import * as express from 'express';
 import * as socketIo from 'socket.io';
@@ -17,6 +20,7 @@ export class ChatServer {
         this.createServer();
         this.sockets();
         this.listen();
+        mongoose.connect(dbURI);
     }
 
     private createApp(): void {
@@ -39,11 +43,16 @@ export class ChatServer {
         this.server.listen(this.port, () => {
             console.log('Running server on port %s', this.port);
         });
+        var chatModel = new mongoose.Schema({
+            name: {type: String},
+            content: {type: String}
+        });
 
+        var ChatModel = mongoose.model('ChatModel', chatModel);
         this.io.on('connect', (socket: any) => {
             console.log('Connected client on port %s.', this.port);
-            socket.on('message', (m: Message) => {
-                console.log('[server](message): %s', JSON.stringify(m));
+            socket.on('message', (m) => {
+                new ChatModel({name: m.from.name, content: m.content}).save();
                 this.io.emit('message', m);
             });
 

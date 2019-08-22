@@ -13,7 +13,7 @@ var ctrlVerification = require('../controllers/verification');
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
 router.get('/users', auth, ctrlProfile.getUsers);
-
+router.get('/messages', auth, ctrlProfile.getChatMessages);
 
 // authentication
 router.post('/register', ctrlAuth.register);
@@ -27,4 +27,5 @@ router.post('/resend', ctrlVerification.resendTokenPost);
 router.post('/block', auth, ctrlProfile.blockUsers);
 router.post('/unblock', auth, ctrlProfile.unBlockUsers);
 router.post('/delete', auth, ctrlProfile.deleteUsers);
+
 module.exports = router;

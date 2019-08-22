@@ -1,5 +1,9 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var ChatModel = mongoose.model('ChatModel', new mongoose.Schema({
+    name: {type: String},
+    content: {type: String}
+}));
 
 module.exports.profileRead = function (req, res) {
 
@@ -14,6 +18,12 @@ module.exports.profileRead = function (req, res) {
                 res.status(200).json(user);
             }).then(r => "");
     }
+};
+
+module.exports.getChatMessages = function (req, res) {
+    ChatModel.find({}, function (err, users) {
+        res.send(users);
+    });
 };
 
 module.exports.getUsers = function (req, res) {

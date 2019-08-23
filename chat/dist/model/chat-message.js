@@ -13,8 +13,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var _1 = require("./");
 var ChatMessage = /** @class */ (function (_super) {
     __extends(ChatMessage, _super);
-    function ChatMessage(from, content) {
-        return _super.call(this, from, content) || this;
+    function ChatMessage(from, content, date) {
+        return _super.call(this, from, content, date) || this;
     }
     return ChatMessage;
 }(_1.Message));

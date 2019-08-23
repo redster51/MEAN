@@ -162,6 +162,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
     };
     return date.toLocaleDateString('en-US', options)
   }
+
   public sendNotification(params: any, action: Action): void {
     let message: Message;
 

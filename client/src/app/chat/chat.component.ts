@@ -58,7 +58,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   private initChatInfo() {
     this.auth.getChatInfo().subscribe(res => {
       this.messages = res.map(mes => {
-        return {content: mes.content, from: {id: mes.id, name: mes.name, avatar: mes.avatar}}
+        return {content: mes.content, date: mes.date, from: {id: mes.id, name: mes.name, avatar: mes.avatar}}
       });
     })
   }

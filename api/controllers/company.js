@@ -1,0 +1,53 @@
+let mongoose = require('mongoose');
+let Company = mongoose.model('Company');
+
+module.exports.findAllCompanies = function(req, res) {
+    if(!res) {
+        res.status(401).json({
+            msg: 'Companies not found...'
+        });
+    }
+    Company.find({}, function (err, companies) {
+        console.log(companies);
+        res.send(companies)
+    })
+};
+
+module.exports.findCompaniesByUser = function (req, res, name) {
+    if (!res) {
+        res.status(401).json({
+                msg: "Companies not find"
+            }
+        )
+    } else {
+        Company.find({creator: name}, function (err, companies) {
+            res.send(companies);
+        })
+    }
+};
+
+module.exports.createCompany = function (req, res) {
+    if (!req) {
+        res.status(401).json({
+            msg: "Something was wrong"
+        })
+    } else {
+
+        let company = new Company({
+            _userId: req.body.creator,
+            name: req.body.name,
+            description: req.body.description,
+            video: req.body.video,
+            needMoney: req.body.needMoney,
+            endDate: req.body.endDate,
+            topic: req.body.topic
+        });
+        company.save(function (err) {
+            if (err) {
+                return res.status(500).send({msg: err.message});
+            }
+            res.status(200);
+
+        })
+    }
+};

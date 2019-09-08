@@ -4,7 +4,7 @@ import { AuthenticationService } from './authentication.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: ['.navig{margin-bottom: 50px}', '.span{margin: auto}']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   constructor(public auth: AuthenticationService) {}

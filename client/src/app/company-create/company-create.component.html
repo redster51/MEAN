@@ -1,0 +1,49 @@
+<div class="tool">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>Create your company</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+
+<div class="container">
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="Name" [(ngModel)]="company.name">
+    </label>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Description" [(ngModel)]="company.description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Topic" [(ngModel)]="company.topic">
+      <mat-option value="option">Option</mat-option>
+      <mat-option value="electronics">Electronics</mat-option>
+      <mat-option value="education">Education</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <label>
+      <input matInput placeholder="Video link (from Youtube)" [(ngModel)]="company.video">
+    </label>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Purpose" type="number" class="example-right-align" [(ngModel)]="company.needMoney">
+    <span matPrefix>$&nbsp;</span>
+    <span matSuffix>.00</span>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a expiry date" [(ngModel)]="company.endDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div class="some-button container">
+    <button mat-raised-button color="primary" (click)="createCompany()">Create</button>
+  </div>
+</div>

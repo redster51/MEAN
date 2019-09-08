@@ -1,28 +1,14 @@
-<!--<div>-->
-<!--  <mat-nav-list class="navig">-->
-<!--    <mat-toolbar>-->
-<!--  <span class="home">-->
-<!--    <ul>-->
-<!--      <li><a routerLink="/">Home</a></li>-->
-<!--    </ul>-->
-<!--  </span>-->
-<!--      <span class="logout">-->
-<!--  <ul class="nav">-->
-<!--    <li *ngIf="!auth.isLoggedIn()"><a routerLink="/login">Sign in</a></li>-->
-<!--    <li *ngIf="auth.isLoggedIn()"><a routerLink="/profile">{{ auth.getUserDetails()?.name }}</a></li>-->
-<!--    <li *ngIf="auth.isLoggedIn()"><a (click)="auth.logout()">Logout</a></li>-->
-<!--  </ul>-->
-<!--  </span>-->
-<!--    </mat-toolbar>-->
-<!--  </mat-nav-list>-->
-<!--</div>-->
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span class="span"><a routerLink="/">Home</a></span>
-    <span class="span" *ngIf="auth.isLoggedIn()"><a routerLink="/chat">Chat</a></span>
-    <span class="span" *ngIf="!auth.isLoggedIn()"><a routerLink="/login">Sign in</a></span>
-    <span class="span" *ngIf="auth.isLoggedIn()"><a routerLink="/profile">{{ auth.getUserDetails()?.name }}</a></span>
-    <span class="span" *ngIf="auth.isLoggedIn()"><a (click)="auth.logout()">Logout</a></span>
-  </mat-toolbar-row>
-</mat-toolbar>
+<div class="app-content">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span class="span"><a mat-button routerLink="/">Home</a></span>
+      <span class="span" *ngIf="auth.isLoggedIn()"><a mat-button routerLink="/create-company">Create Company</a></span>
+      <span class="span" *ngIf="auth.isLoggedIn()"><a mat-button routerLink="/chat">Chat</a></span>
+      <span class="span" *ngIf="!auth.isLoggedIn()"><a mat-button routerLink="/login">Sign in</a></span>
+      <span class="span" *ngIf="auth.isLoggedIn()"><a mat-button
+                                                      routerLink="/profile">{{ auth.getUserDetails()?.name }}</a></span>
+      <span class="span" *ngIf="auth.isLoggedIn()"><a mat-button (click)="auth.logout()">Logout</a></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
 <router-outlet></router-outlet>

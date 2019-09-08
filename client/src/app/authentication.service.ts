@@ -22,6 +22,16 @@ export interface TokenPayload {
   name?: string;
 }
 
+export interface companyDetails {
+  creator: string,
+  name: string,
+  description: string,
+  topic: string,
+  video: string,
+  needMoney: number,
+  endDate: string
+}
+
 @Injectable()
 export class AuthenticationService {
   private token: string;
@@ -66,7 +76,7 @@ export class AuthenticationService {
     let base;
 
     if (method === 'post') {
-      base = this.http.post(`/api/${type}`, object, {headers: {Authorization: `Bearer ${this.getToken()}`}}); //добавил сюда такой же токен как и в ГЕТ запросе
+      base = this.http.post(`/api/${type}`, object, {headers: {Authorization: `Bearer ${this.getToken()}`}});
     } else {
       base = this.http.get(`/api/${type}`, {headers: {Authorization: `Bearer ${this.getToken()}`}});
     }
@@ -119,5 +129,13 @@ export class AuthenticationService {
     this.token = '';
     window.localStorage.removeItem('mean-token');
     this.router.navigateByUrl('/');
+  }
+
+  public addCompany(company: companyDetails): Observable<any> {
+    return this.request('post', 'createCompany', company);
+  }
+
+  public getCompanies(): Observable<any> {
+    return this.request("get", "companies");
   }
 }

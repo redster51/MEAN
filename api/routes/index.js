@@ -1,14 +1,15 @@
-var express = require('express');
-var router = express.Router();
-var jwt = require('express-jwt');
-var auth = jwt({
+let express = require('express');
+let router = express.Router();
+let jwt = require('express-jwt');
+let auth = jwt({
     secret: 'MY_SECRET',
     userProperty: 'payload'
 });
 
 let ctrlProfile = require('../controllers/profile');
 let ctrlAuth = require('../controllers/authentication');
-var ctrlVerification = require('../controllers/verification');
+let ctrlVerification = require('../controllers/verification');
+let ctrlCompany = require('../controllers/company');
 
 // profile
 router.get('/profile', auth, ctrlProfile.profileRead);
@@ -28,4 +29,8 @@ router.post('/block', auth, ctrlProfile.blockUsers);
 router.post('/unblock', auth, ctrlProfile.unBlockUsers);
 router.post('/delete', auth, ctrlProfile.deleteUsers);
 
+//work with companies
+router.post('/createCompany', auth, ctrlCompany.createCompany);
+router.post('/findCompanies', auth, ctrlCompany.findCompaniesByUser);
+router.get('/companies', ctrlCompany.findAllCompanies);
 module.exports = router;

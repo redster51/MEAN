@@ -19,7 +19,7 @@ module.exports.register = function (req, res) {
             }
 
             // Create a verification token for this user
-            var token = new Token({_userId: user._id, token: crypto.randomBytes(16).toString('hex')});
+            let token = new Token({_userId: user._id, token: crypto.randomBytes(16).toString('hex')});
 
             // Save the verification token
             token.save(function (err) {
@@ -28,11 +28,11 @@ module.exports.register = function (req, res) {
                 }
 
                 // Send the email
-                var transporter = nodemailer.createTransport({
+                let transporter = nodemailer.createTransport({
                     service: 'Gmail',
                     auth: {user: '321node.ver123@gmail.com', pass: '`1q2w3e4r'}
                 });
-                var mailOptions = {
+                let mailOptions = {
                     from: 'no-reply@yourwebapplication.com',
                     to: user.email,
                     subject: 'Account Verification Token',
@@ -51,7 +51,10 @@ module.exports.register = function (req, res) {
 
 module.exports.login = function (req, res) {
     User.findOne({email: req.body.email}, function (err, user) {
-        if (!user) return res.status(401).send({msg: 'The email address ' + req.body.email + ' is not associated with any account. Double-check your email address and try again.'});
+        if (!user) return res.status(401).send(
+            {msg: 'The email address '
+                    + req.body.email
+                    + ' is not associated with any account. Double-check your email address and try again.'});
         if (user.isBlocked) return res.status(401).send({msg: 'Banned!'});
         if (user.password === req.body.password) {
             // Make sure the user has been verified
@@ -62,8 +65,7 @@ module.exports.login = function (req, res) {
 
             // Login successful, write token, and send back user
             res.send({token: user.generateJwt(), user: user.toJSON()});
-        }
-        else {
+        } else {
             return res.status(401).send({msg: 'Invalid email or password'});
         }
     });

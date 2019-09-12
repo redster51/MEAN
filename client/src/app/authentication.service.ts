@@ -121,7 +121,7 @@ export class AuthenticationService {
     return this.request('post', 'block', users);
   }
 
-  public unblockUsers(users): Observable<any> {
+  public unblockUsers(users): Observable<Object> {
     return this.request('post', 'unblock', users);
   }
 
@@ -131,11 +131,15 @@ export class AuthenticationService {
     this.router.navigateByUrl('/');
   }
 
-  public addCompany(company: companyDetails): Observable<any> {
+  public addCompany(company: companyDetails): Observable<Object> {
     return this.request('post', 'createCompany', company);
   }
 
-  public getCompanies(): Observable<any> {
+  public getCompanies(): Observable<Object> {
     return this.request("get", "companies");
+  }
+
+  public getCompany(id: String): Observable<Object> {
+    return this.request("get", "company/" + id);
   }
 }

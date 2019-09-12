@@ -25,12 +25,15 @@ import {AlertsModule} from "angular-alert-module";
 import {ChatComponent} from "./chat/chat.component";
 import {ChatModule} from "./chat/chat.module";
 import {SharedModule} from "./chat/shared/shared.module";
-import { RedirectComponent } from './redirect/redirect.component';
-import { CompanyCreateComponent } from './company-create/company-create.component';
+import {RedirectComponent} from './redirect/redirect.component';
+import {CompanyCreateComponent} from './company-create/company-create.component';
 import {MatSelectModule} from "@angular/material/select";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
-import { CompaniesComponent } from './companies/companies.component';
+import {CompaniesComponent} from './companies/companies.component';
+import {CompanyComponent} from './company/company.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {FileUploadModule} from "ng2-file-upload";
 
 const routes: Routes = [
   {path: '', component: CompaniesComponent},
@@ -39,8 +42,9 @@ const routes: Routes = [
   {path: 'confirmation/:token', component: ConfirmationComponent},
   {path: 'chat', component: ChatComponent, canActivate: [AuthGuardService]},
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService]},
-  {path: 'create-company', component: CompanyCreateComponent, canActivate:[AuthGuardService]},
-  {path: 'adm-panel', component: HomeComponent},
+  {path: 'create-company', component: CompanyCreateComponent, canActivate: [AuthGuardService]},
+  {path: 'adm-panel', component: HomeComponent, canActivate: [AuthGuardService]},
+  {path: 'company/:id', component: CompanyComponent, canActivate: [AuthGuardService]},
   {path: '*', component: RedirectComponent}
 ];
 
@@ -54,7 +58,8 @@ const routes: Routes = [
     ConfirmationComponent,
     RedirectComponent,
     CompanyCreateComponent,
-    CompaniesComponent
+    CompaniesComponent,
+    CompanyComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +78,9 @@ const routes: Routes = [
     SharedModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatProgressSpinnerModule,
+    FileUploadModule,
   ],
   providers: [
     AuthenticationService,

@@ -1,10 +1,9 @@
 <div class="app-content">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span class="span"><a mat-button routerLink="/">Home</a></span>
       <span class="span" *ngIf="auth.isLoggedIn()"><a mat-button routerLink="/create-company">Create Company</a></span>
-      <span class="span" *ngIf="auth.isLoggedIn()"><a mat-button routerLink="/chat">Chat</a></span>
       <span class="span" *ngIf="!auth.isLoggedIn()"><a mat-button routerLink="/login">Sign in</a></span>
+      <span class="span"><a mat-button routerLink="/"><b><i>KickBarter</i></b></a></span>
       <span class="span" *ngIf="auth.isLoggedIn()"><a mat-button
                                                       routerLink="/profile">{{ auth.getUserDetails()?.name }}</a></span>
       <span class="span" *ngIf="auth.isLoggedIn()"><a mat-button (click)="auth.logout()">Logout</a></span>

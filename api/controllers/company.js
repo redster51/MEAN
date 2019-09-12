@@ -13,6 +13,18 @@ module.exports.findAllCompanies = function(req, res) {
     })
 };
 
+module.exports.findCompany = function(req, res) {
+    if(!res) {
+        res.status(401).json({
+            msg: 'Company not found...'
+        });
+    }
+    Company.find({_id: req.params.id}, function (err, company) {
+        console.log(company);
+        res.send(company)
+    })
+};
+
 module.exports.findCompaniesByUser = function (req, res, name) {
     if (!res) {
         res.status(401).json({

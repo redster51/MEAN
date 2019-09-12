@@ -1,7 +1,12 @@
 .app-content {
+  margin-bottom: 30px;
   width: 100%;
   box-sizing: border-box;
-  margin-bottom: -30px;
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  box-shadow: 5px 0 10px 7px rgba(0, 0, 0, 0.5); /* Параметры тени */
 }
 
 .span {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from "../authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-companies',
@@ -9,9 +10,10 @@ import {AuthenticationService} from "../authentication.service";
 export class CompaniesComponent implements OnInit {
   companies;
 
-  constructor(private auth: AuthenticationService) { }
+  constructor(private auth: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
+    // console.log(cloudinary.cloudinaryInstance.image('dog'));
     this.initCompanies()
   }
 
@@ -20,5 +22,9 @@ export class CompaniesComponent implements OnInit {
       this.companies = res;
       console.log(res);
     })
+  }
+
+  goToCompany(id) {
+    this.router.navigate(['/company', id]);
   }
 }

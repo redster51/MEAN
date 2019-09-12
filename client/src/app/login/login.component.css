@@ -13,10 +13,5 @@
 }
 
 .container > * {
-  width: 50%;
+  width: 70%;
 }
-
-.some-button > * {
-  width: 15%!important;
-}
-

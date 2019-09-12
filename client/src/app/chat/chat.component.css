@@ -1,4 +1,3 @@
-
 [mat-fab] {
     position: absolute;
     right: 2%;
@@ -8,13 +7,13 @@
 
 .chat-container {
     position: fixed;
-    width: 100%; 
-    height: 100%;  
+    width: 100%;
+    height: 100%;
 }
 
 .chat-input {
     padding-top: 20px;
-    width: 80%; 
+    width: 80%;
 }
 
 .chat-list {
@@ -34,7 +33,7 @@
 }
 
 .main-card {
-    height: 100%;  
+    height: 100%;
 }
 
 .chat-footer-container {

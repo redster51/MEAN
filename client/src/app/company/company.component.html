@@ -1,0 +1,26 @@
+<div class="spinner">
+  <mat-spinner *ngIf="!isCompanyAvailable"></mat-spinner>
+</div>
+<div class="tool">
+  <mat-toolbar color="primary" class="bar">
+    <mat-toolbar-row>
+      <span *ngIf="isCompanyAvailable">{{company.name}}</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>
+<div class="container" *ngIf="isCompanyAvailable">
+  <input type="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera">
+  <button [disabled]="loading" (click)="upload()" class="btn btn-success mt-3">Upload</button>
+  <div class="left-content">
+    <div class="description">
+      <mat-card>
+        <div>
+          {{company.description}}
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+<div class="right-content">
+  <img class="image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Image by company">
+</div>

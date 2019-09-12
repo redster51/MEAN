@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import {AlertsService} from "angular-alert-module";
 
 @Component({
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
   credentials: TokenPayload = {

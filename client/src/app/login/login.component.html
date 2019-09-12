@@ -1,5 +1,5 @@
 <div class="tool">
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" class="bar">
     <mat-toolbar-row>
       <span>Login</span>
     </mat-toolbar-row>
@@ -7,7 +7,7 @@
 </div>
 
 <div class="container">
-  <div class="row">
+  <div class="">
 
     <div class="col-md-6">
 
@@ -16,14 +16,17 @@
 
       <form (submit)="login()">
         <div class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" name="email" placeholder="Enter email" [(ngModel)]="credentials.email">
+          <mat-form-field>
+            <input matInput type="email" name="email" placeholder="Enter email" [(ngModel)]="credentials.email">
+          </mat-form-field>
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="credentials.password">
+          <mat-form-field>
+            <input matInput type="password" name="password" placeholder="Password"
+                   [(ngModel)]="credentials.password">
+          </mat-form-field>
         </div>
-        <button type="submit" class="btn btn-default">Sign in!</button>
+        <button mat-raised-button color="primary" type="submit">Sign in!</button>
       </form>
 
     </div>

@@ -14,7 +14,7 @@ export class CompanyComponent implements OnInit {
   isCompanyAvailable: boolean = false;
   uploader: CloudinaryUploader = new CloudinaryUploader(
     new CloudinaryOptions({ cloudName: 'db1ymlgol',
-      uploadPreset: 'ml_default' })
+      uploadPreset: 'ml_default' }) //много вопросов к этому параметру
   );
   loading: any;
 

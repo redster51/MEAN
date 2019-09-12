@@ -9,18 +9,50 @@
   </mat-toolbar>
 </div>
 <div class="container" *ngIf="isCompanyAvailable">
-  <input type="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera">
-  <button [disabled]="loading" (click)="upload()" class="btn btn-success mt-3">Upload</button>
-  <div class="left-content">
+<!--  <input type="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera">-->
+<!--  <button [disabled]="loading" (click)="upload()" class="btn btn-success mt-3">Upload</button>-->
+  <div class="right-content">
     <div class="description">
       <mat-card>
         <div>
           {{company.description}}
         </div>
       </mat-card>
+      <mat-card>
+        <div>
+          {{company.description}}
+        </div>
+      </mat-card>
+      <mat-card>
+        <div>
+          {{company.description}}
+        </div>
+      </mat-card>
+      <mat-card>
+        <div>
+          {{company.description}}
+        </div>
+      </mat-card>
+      <mat-card>
+        <div>
+          {{company.description}}
+        </div>
+      </mat-card>
+      <mat-card>
+        <div>
+          {{company.description}}
+        </div>
+      </mat-card>
+      <mat-card>
+        <div>
+          {{company.description}}
+        </div>
+      </mat-card>
+
     </div>
   </div>
+  <div class="sidenav">
+    <img class="image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Image by company">
+  </div>
 </div>
-<div class="right-content">
-  <img class="image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Image by company">
-</div>
+

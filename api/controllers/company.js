@@ -8,7 +8,6 @@ module.exports.findAllCompanies = function (req, res) {
         });
     }
     Company.find({}, function (err, companies) {
-        console.log(companies);
         res.send(companies)
     })
 };
@@ -20,7 +19,6 @@ module.exports.findCompany = function (req, res) {
         });
     }
     Company.find({_id: req.params.id}, function (err, company) {
-        console.log(company);
         res.send(company)
     })
 };
@@ -56,6 +54,7 @@ module.exports.createCompany = function (req, res) {
         });
         company.save(function (err) {
             if (err) {
+                console.log(req.body);
                 return res.status(500).send({msg: err.message});
             }
             res.status(200);
@@ -65,13 +64,26 @@ module.exports.createCompany = function (req, res) {
 
 module.exports.addRating = function (req, res) {    //have some questions...
     if (!req) {
-        res.status(401).json({msg: 'Something was wrong'})
+        res.status(401).json({msg: 'Rating not added'})
     } else {
         Company.findByIdAndUpdate(req.body.companyId, {$addToSet: {rating: req.body.rating}}, function (err, rating) {
             if (err) {
                 return res.status(500).send({msg: err.message});
             }
             res.send(rating);
+        })
+    }
+};
+
+module.exports.getRating = function (req, res) {
+    if (!req) {
+        res.status(401).json({msg: "Rating couldn't get!"})
+    } else {
+        Company.findById(req.params.id, function (err, company) {
+            if (err) {
+                return res.status(500).send({msg: err.message});
+            }
+            res.send(company.rating);
         })
     }
 };

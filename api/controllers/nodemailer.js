@@ -16,4 +16,3 @@ let result = transporter.sendMail({
     html: "This <i>message</i> was sent from <strong>Node js</strong> server."
 });
 
-console.log(result);

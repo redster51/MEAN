@@ -20,3 +20,11 @@
   width: 15%!important;
 }
 
+.file_upload {
+  display: flex;
+  flex-direction: row;
+}
+
+#spacer {
+  margin: auto;
+}

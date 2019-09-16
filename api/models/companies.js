@@ -8,8 +8,8 @@ let companySchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        unique: true,
-        required: true
+        required: true,
+        unique: true
     },
     description: {
         type: String,
@@ -35,6 +35,10 @@ let companySchema = new mongoose.Schema({
     },
     rating: {
         type: Array
+    },
+    imageUrl: {
+        type: String,
+        required: true
     }
 });
 

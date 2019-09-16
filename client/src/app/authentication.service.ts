@@ -29,7 +29,10 @@ export interface companyDetails {
   topic: string,
   video: string,
   needMoney: number,
-  endDate: string
+  endDate: string,
+  bonuses: Array<object>,
+  rating: Array<object>,
+  imgUrl: string
 }
 
 @Injectable()
@@ -139,11 +142,15 @@ export class AuthenticationService {
     return this.request("get", "companies");
   }
 
-  public getCompany(id: String): Observable<Object> {
+  public getCompany(id: String): Observable<any> {
     return this.request("get", "company/" + id);
   }
 
   public addRating(companyId: string, rating: Object): Observable<Object> {
     return this.request('post', 'addRating', {companyId, rating});
+  }
+
+  public getRating(companyId: String): Observable<any> {
+    return this.request('get', 'getRating/' + companyId);
   }
 }

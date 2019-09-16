@@ -47,6 +47,11 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
+  <div class="file_upload">
+    <input id="file" type="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera">
+    <span id="spacer"></span>
+    <button mat-raised-button color="accent" [disabled]="loading" (click)="upload()">Upload</button>
+  </div>
   <div class="some-button container">
     <button mat-raised-button color="primary" (click)="createCompany()">Create</button>
   </div>

@@ -35,4 +35,5 @@ router.post('/findCompanies', auth, ctrlCompany.findCompaniesByUser);
 router.get('/companies', ctrlCompany.findAllCompanies);
 router.get('/company/:id', ctrlCompany.findCompany);
 router.post('/addRating', ctrlCompany.addRating);
+router.get('/getRating/:id', ctrlCompany.getRating);
 module.exports = router;

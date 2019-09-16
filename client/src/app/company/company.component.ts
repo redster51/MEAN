@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {AuthenticationService} from "../authentication.service";
-import {CloudinaryOptions, CloudinaryUploader} from "ng2-cloudinary";
 import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
@@ -14,17 +13,10 @@ export class CompanyComponent implements OnInit {
   isCompanyAvailable: boolean = false;
   loading;
   displayURL;
-  uploader: CloudinaryUploader = new CloudinaryUploader(
-    new CloudinaryOptions({
-      cloudName: 'db1ymlgol',
-      uploadPreset: 'ml_default'
-    }) //много вопросов к этому параметру
-  );
   rate: number;
 
   constructor(private route: ActivatedRoute, private auth: AuthenticationService, private sanitizer: DomSanitizer) {
   }
-
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -34,33 +26,24 @@ export class CompanyComponent implements OnInit {
         this.company = res[0];
         this.isCompanyAvailable = true;
         this.displayURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.matchYoutubeUrl(this.company.video));
+        this.auth.getRating(this.company._id).subscribe(rating => {
+          console.log("rating", rating);
+        })
       });
     });
   }
 
   matchYoutubeUrl(url) {
-    var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+    let p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
     return (url.match(p)) ? 'https://www.youtube.com/embed/' + RegExp.$1 : '';
   }
 
-  upload() {
-    this.loading = true;
-    this.uploader.uploadAll();
-    this.uploader.onSuccessItem = (item: any, response: string): any => {
-      let res: any = JSON.parse(response);
-      console.log(res);
-    };
-    this.uploader.onErrorItem = function (fileItem, response, status, headers) {
-      console.info('onErrorItem', fileItem, response, status, headers);
-    };
-  }
-
   addRating() {
-    let rate, userId;
-    userId = this.auth.getUserDetails()._id;
-    rate = this.rate;
-    let rating = {userId, rate};
+    let rating = {userId: this.auth.getUserDetails()._id, rate: this.rate};
+    console.log(rating);
     let companyId = this.company._id;
-    this.auth.addRating(companyId, rating);
+    this.auth.addRating(companyId, rating).subscribe(r => {
+      console.log(r);
+    });
   }
 }

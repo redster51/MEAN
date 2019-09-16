@@ -34,4 +34,5 @@ router.post('/createCompany', auth, ctrlCompany.createCompany);
 router.post('/findCompanies', auth, ctrlCompany.findCompaniesByUser);
 router.get('/companies', ctrlCompany.findAllCompanies);
 router.get('/company/:id', ctrlCompany.findCompany);
+router.post('/addRating', ctrlCompany.addRating);
 module.exports = router;

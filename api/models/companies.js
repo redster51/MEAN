@@ -6,35 +6,35 @@ let companySchema = new mongoose.Schema({
         required: true,
         ref: 'User'
     },
-
     name: {
         type: String,
         unique: true,
         required: true
     },
-
     description: {
         type: String,
         required: true
     },
-
     topic: {
         type: String,
         required: true
     },
-
     video: {
         type: String
     },
-
     needMoney: {
         type: Number,
         required: true
     },
-
     endDate: {
         type: Date,
         required: true
+    },
+    bonuses: {
+       type: Array
+    },
+    rating: {
+        type: Array
     }
 });
 

@@ -9,50 +9,33 @@
   </mat-toolbar>
 </div>
 <div class="container" *ngIf="isCompanyAvailable">
-<!--  <input type="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera">-->
-<!--  <button [disabled]="loading" (click)="upload()" class="btn btn-success mt-3">Upload</button>-->
+  <!--  <input type="file" ng2FileSelect [uploader]="uploader" accept="image/*;capture=camera">-->
+  <!--  <button [disabled]="loading" (click)="upload()" class="btn btn-success mt-3">Upload</button>-->
   <div class="right-content">
     <div class="description">
       <mat-card>
         <div>
+          <b>Description:</b><br>
           {{company.description}}
+        </div><br>
+        <div fxFlex id="visor-video" *ngIf="displayURL">
+          <iframe
+            width="450"
+            height="350"
+            [src]="displayURL"
+          ></iframe>
         </div>
-      </mat-card>
-      <mat-card>
+        <br>
         <div>
-          {{company.description}}
+          <b>Fundraising Date: </b> {{company.endDate}}
         </div>
       </mat-card>
-      <mat-card>
-        <div>
-          {{company.description}}
-        </div>
-      </mat-card>
-      <mat-card>
-        <div>
-          {{company.description}}
-        </div>
-      </mat-card>
-      <mat-card>
-        <div>
-          {{company.description}}
-        </div>
-      </mat-card>
-      <mat-card>
-        <div>
-          {{company.description}}
-        </div>
-      </mat-card>
-      <mat-card>
-        <div>
-          {{company.description}}
-        </div>
-      </mat-card>
-
     </div>
   </div>
   <div class="sidenav">
     <img class="image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Image by company">
+    <bar-rating [theme]="'stars'" [(rate)]="rate" [max]="5" (rateChange)="addRating()"></bar-rating>
+    <button mat-raised-button color="accent">Donate</button>
   </div>
 </div>
 

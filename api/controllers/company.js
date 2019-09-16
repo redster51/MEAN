@@ -1,8 +1,8 @@
 let mongoose = require('mongoose');
 let Company = mongoose.model('Company');
 
-module.exports.findAllCompanies = function(req, res) {
-    if(!res) {
+module.exports.findAllCompanies = function (req, res) {
+    if (!res) {
         res.status(401).json({
             msg: 'Companies not found...'
         });
@@ -13,8 +13,8 @@ module.exports.findAllCompanies = function(req, res) {
     })
 };
 
-module.exports.findCompany = function(req, res) {
-    if(!res) {
+module.exports.findCompany = function (req, res) {
+    if (!res) {
         res.status(401).json({
             msg: 'Company not found...'
         });
@@ -59,7 +59,19 @@ module.exports.createCompany = function (req, res) {
                 return res.status(500).send({msg: err.message});
             }
             res.status(200);
+        })
+    }
+};
 
+module.exports.addRating = function (req, res) {    //have some questions...
+    if (!req) {
+        res.status(401).json({msg: 'Something was wrong'})
+    } else {
+        Company.findByIdAndUpdate(req.body.companyId, {$addToSet: {rating: req.body.rating}}, function (err, rating) {
+            if (err) {
+                return res.status(500).send({msg: err.message});
+            }
+            res.send(rating);
         })
     }
 };

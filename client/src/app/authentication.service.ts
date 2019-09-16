@@ -142,4 +142,8 @@ export class AuthenticationService {
   public getCompany(id: String): Observable<Object> {
     return this.request("get", "company/" + id);
   }
+
+  public addRating(companyId: string, rating: Object): Observable<Object> {
+    return this.request('post', 'addRating', {companyId, rating});
+  }
 }

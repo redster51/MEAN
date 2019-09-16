@@ -34,6 +34,7 @@ import {CompaniesComponent} from './companies/companies.component';
 import {CompanyComponent} from './company/company.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {FileUploadModule} from "ng2-file-upload";
+import {BarRatingModule} from "ngx-bar-rating";
 
 const routes: Routes = [
   {path: '', component: CompaniesComponent},
@@ -81,6 +82,7 @@ const routes: Routes = [
     MatNativeDateModule,
     MatProgressSpinnerModule,
     FileUploadModule,
+    BarRatingModule
   ],
   providers: [
     AuthenticationService,

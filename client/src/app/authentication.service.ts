@@ -153,4 +153,8 @@ export class AuthenticationService {
   public getRating(companyId: String): Observable<any> {
     return this.request('get', 'getRating/' + companyId);
   }
+
+  public getSearch(search: String): Observable<Object> {
+    return this.request('get', 'search/' + search);
+  }
 }

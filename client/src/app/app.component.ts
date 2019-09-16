@@ -1,11 +1,19 @@
 import { Component } from '@angular/core';
-import { AuthenticationService } from './authentication.service';
+import {AuthenticationService, companyDetails} from './authentication.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  constructor(public auth: AuthenticationService) {}
+export class AppComponent{
+  search: string = ' ';
+  companies: Array<companyDetails>;
+  constructor(public auth: AuthenticationService) {
+
+  }
+
+  getSearch() {
+    this.auth.getSearch(this.search).subscribe(r => console.log(r));
+  }
 }

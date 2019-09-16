@@ -1,7 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
@@ -35,6 +35,7 @@ import {CompanyComponent} from './company/company.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {FileUploadModule} from "ng2-file-upload";
 import {BarRatingModule} from "ngx-bar-rating";
+import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
 
 const routes: Routes = [
   {path: '', component: CompaniesComponent},
@@ -82,7 +83,9 @@ const routes: Routes = [
     MatNativeDateModule,
     MatProgressSpinnerModule,
     FileUploadModule,
-    BarRatingModule
+    BarRatingModule,
+    ReactiveFormsModule,
+    NgxMatSelectSearchModule
   ],
   providers: [
     AuthenticationService,

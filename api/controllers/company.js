@@ -87,3 +87,11 @@ module.exports.getRating = function (req, res) {
         })
     }
 };
+
+module.exports.getSearch = function (req, res) {
+  if (!req) {
+      res.status(401).json({msg: 'Search do not work'})
+  } else {
+      Company.find() //mongoose fulltext search...
+  }
+};

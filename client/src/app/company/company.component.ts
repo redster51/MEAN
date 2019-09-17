@@ -15,6 +15,7 @@ export class CompanyComponent implements OnInit {
   displayURL;
   rate: number;
   donate: number = 100;
+
   constructor(private route: ActivatedRoute, private auth: AuthenticationService, private sanitizer: DomSanitizer) {
   }
 
@@ -34,10 +35,10 @@ export class CompanyComponent implements OnInit {
 
   countRating(ratings) {
     let countRatings = 0;
-      for (let i = 0; i < ratings.length; i++) {
-        countRatings += ratings[i].rate;
-      }
-    return countRatings/ratings.length;
+    for (let i = 0; i < ratings.length; i++) {
+      countRatings += ratings[i].rate;
+    }
+    return countRatings / ratings.length;
   }
 
   matchYoutubeUrl(url) {

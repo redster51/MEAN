@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService, companyDetails} from "../authentication.service";
-import {Router} from "@angular/router";
 import {CloudinaryOptions, CloudinaryUploader} from "ng2-cloudinary";
 
 @Component({

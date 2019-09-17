@@ -27,7 +27,7 @@ export class CompanyCreateComponent implements OnInit {
     needMoney: 0,
     endDate: Date.toString(),
     bonuses: [],
-    rating: [],
+    rating: [{userId: '', rate: 5}],
     imgUrl: ''
   };
 

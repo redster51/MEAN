@@ -41,7 +41,7 @@ let companySchema = new mongoose.Schema({
     },
     rating: {
         type: Array,
-        default: [{userId: '', rate: 0}]
+        required: true
     },
     imageUrl: {
         type: String,

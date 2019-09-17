@@ -36,6 +36,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {FileUploadModule} from "ng2-file-upload";
 import {BarRatingModule} from "ngx-bar-rating";
 import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 const routes: Routes = [
   {path: '', component: CompaniesComponent},
@@ -85,7 +86,8 @@ const routes: Routes = [
     FileUploadModule,
     BarRatingModule,
     ReactiveFormsModule,
-    NgxMatSelectSearchModule
+    NgxMatSelectSearchModule,
+    MatProgressBarModule
   ],
   providers: [
     AuthenticationService,

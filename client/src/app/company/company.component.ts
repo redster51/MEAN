@@ -62,4 +62,16 @@ export class CompanyComponent implements OnInit {
       this.auth.addDonate(objectDonate).subscribe(r => console.log(r));
     }
   }
+
+  sumOfDonates(donates) {
+    let sum = 0;
+    for (let i = 1; i < donates.length; i++) {
+      sum += Number(donates[i].donate);
+    }
+    return sum;
+  }
+
+  sumInPercent(value) {
+    return value * 100 / this.company.needMoney;
+  }
 }

@@ -27,8 +27,8 @@
         <br>
         <div>
           <b>Fundraising Date: </b> {{company.endDate}}<br>
-          <b>Fundraising money:</b> {{company.collectedMoney}}/{{company.needMoney}}<br>
-
+          <b>Fundraising money:</b> {{sumOfDonates(company.collectedMoney)}} of {{company.needMoney}}<br>
+          <mat-progress-bar mode="determinate" value="{{sumInPercent(sumOfDonates(company.collectedMoney))}}"></mat-progress-bar>
         </div>
       </mat-card>
     </div>

@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {AuthenticationService} from "../authentication.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {Subscription} from "rxjs";
+import {switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-companies',
@@ -10,21 +12,23 @@ import {Router} from "@angular/router";
 export class CompaniesComponent implements OnInit {
   companies;
 
-  constructor(private auth: AuthenticationService, private router: Router) { }
+  constructor(private auth: AuthenticationService, private router: Router, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     // console.log(cloudinary.cloudinaryInstance.image('dog'));
-    this.initCompanies()
-  }
-
-  initCompanies() {
-    this.auth.getCompanies().subscribe((res) => {
-      this.companies = res;
-      console.log(res);
-    })
+    this.route.queryParams
+      .pipe(switchMap((param) => this.auth.search(param.text)))
+      .subscribe(comps => this.companies = comps);
   }
 
   goToCompany(id) {
     this.router.navigate(['/company', id]);
+  }
+
+  search(message) {
+    if (message) {
+      this.auth.search(message).subscribe(r => this.companies = r);
+    }
   }
 }

@@ -95,7 +95,7 @@ module.exports.search = function (req, res) {
         res.status(401).json({msg: 'Search do not work'})
     } else {
         Company.find(
-            { $text : { $search : req.body.text } },
+            { $text : { $search : req.params.text } },
             { score : { $meta: 'textScore' }})
             .sort({ score : { $meta : 'textScore' } })
             .exec(function(err, results) {

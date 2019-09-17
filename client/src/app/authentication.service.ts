@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {map} from 'rxjs/operators/map';
 import {Router} from '@angular/router';
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 export interface UserDetails {
   _id: string;
@@ -155,7 +156,10 @@ export class AuthenticationService {
   }
 
   public search(text: String): Observable<Object> {
-    return this.request('post', 'search', text);
+    if (text) {
+      return this.request('get', 'search/' + text);
+    }
+    return this.getCompanies();
   }
 
   public addDonate(donate): Observable<Object> {

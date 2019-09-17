@@ -10,7 +10,6 @@
 </div>
 <div class="container" *ngIf="isCompanyAvailable">
   <div class="right-content">
-    <div class="description">
       <mat-card>
         <div>
           <b>Description:</b><br>
@@ -31,7 +30,19 @@
           <mat-progress-bar mode="determinate" value="{{sumInPercent(sumOfDonates(company.collectedMoney))}}"></mat-progress-bar>
         </div>
       </mat-card>
-    </div>
+  </div>
+  <div class="right-content-2">
+    <mat-card>
+      <mat-card-title>
+        NOVOSTI
+      </mat-card-title>
+      <mat-card-content>
+        <!--      tyt v cikle-->
+        <div>
+          novost 1
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
   <div class="sidenav">
     <mat-card>
@@ -46,6 +57,18 @@
           </button>
         </mat-form-field>
         <button mat-raised-button color="accent" (click)="useDonate()">Donate</button>
+      </div>
+    </mat-card>
+  </div>
+</div>
+<!--      tyt v cikle-->
+<div style="margin-top: 10px" class="container" *ngIf="isCompanyAvailable">
+  <div class="right-content">
+    <mat-card>
+      <div>
+        <b>Name</b>
+        <span style="float: right">2019:23</span>
+        <p>{{company.description}}</p>
       </div>
     </mat-card>
   </div>

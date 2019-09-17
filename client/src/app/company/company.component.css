@@ -49,8 +49,12 @@ img {
 .right-content {
   margin-left: 33%; /* Same as the width of the sidebar */
   margin-right: 1%;
-  width: 75%;
   padding: 0 10px;
+  min-width: 510px;
+}
+
+.right-content-2 {
+  width: 100%;
 }
 
 .donate {

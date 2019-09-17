@@ -11,7 +11,6 @@ import {DomSanitizer} from "@angular/platform-browser";
 export class CompanyComponent implements OnInit {
   company;
   isCompanyAvailable: boolean = false;
-  loading;
   displayURL;
   rate: number;
   value: number;
@@ -26,7 +25,6 @@ export class CompanyComponent implements OnInit {
         this.isCompanyAvailable = true;
         this.displayURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.matchYoutubeUrl(this.company.video));
         this.auth.getRating(this.company._id).subscribe(rating => {
-          console.log(rating);
           this.rate = this.countRating(rating);
         })
       });
@@ -48,18 +46,14 @@ export class CompanyComponent implements OnInit {
 
   addRating() {
     let rating = {userId: this.auth.getUserDetails()._id, rate: this.rate};
-    console.log(rating);
     let companyId = this.company._id;
-    this.auth.addRating(companyId, rating).subscribe(r => {
-      console.log(r);
-    });
+    this.auth.addRating(companyId, rating).subscribe(r => this.ngOnInit());
   }
 
   useDonate() {
     if (this.value !== 0) {
       let objectDonate: object = {name: this.company.name, userId: this.auth.getUserDetails()._id, donate: this.value};
-      console.log(objectDonate);
-      this.auth.addDonate(objectDonate).subscribe(r => console.log(r));
+      this.auth.addDonate(objectDonate).subscribe(r => this.ngOnInit());
     }
   }
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {AuthenticationService, companyDetails} from './authentication.service';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -7,13 +8,15 @@ import {AuthenticationService, companyDetails} from './authentication.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  search: string = ' ';
+  text: string = '';
   companies: Array<companyDetails>;
-  constructor(public auth: AuthenticationService) {
-
+  constructor(public auth: AuthenticationService, private router: Router, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(param => {
+      this.text = param.text;
+    })
   }
 
-  getSearch() {
-    this.auth.getSearch(this.search).subscribe(r => console.log(r));
+  search() {
+    this.router.navigate(['/'], {queryParams: {text: this.text}});
   }
 }

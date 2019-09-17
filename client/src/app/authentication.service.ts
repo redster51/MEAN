@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {map} from 'rxjs/operators/map';
 import {Router} from '@angular/router';
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 export interface UserDetails {
   _id: string;
@@ -154,8 +155,11 @@ export class AuthenticationService {
     return this.request('get', 'getRating/' + companyId);
   }
 
-  public getSearch(search: String): Observable<Object> {
-    return this.request('get', 'search/' + search);
+  public search(text: String): Observable<Object> {
+    if (text) {
+      return this.request('get', 'search/' + text);
+    }
+    return this.getCompanies();
   }
 
   public addDonate(donate): Observable<Object> {

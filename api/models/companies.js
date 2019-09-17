@@ -47,4 +47,6 @@ let companySchema = new mongoose.Schema({
     }
 });
 
+companySchema.index({name: 'text', description: 'text', topic: 'text', collectedMoney: 'text'});
+
 mongoose.model('Company', companySchema);

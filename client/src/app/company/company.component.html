@@ -33,6 +33,18 @@
   <div class="sidenav">
     <img class="image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Image by company">
     <bar-rating *ngIf="rate" [theme]="'stars'" [(rate)]="rate" [max]="5" (rateChange)="addRating()"></bar-rating>
-    <button mat-raised-button color="accent">Donate</button>
+    <ol>
+      <li>
+        <mat-form-field>
+          <input matInput [(ngModel)]="name" placeholder="What's your name?">
+        </mat-form-field>
+      </li>
+      <li>
+        <button mat-raised-button (click)="openDialog()">Donate</button>
+      </li>
+      <li *ngIf="animal">
+        You chose: <i>{{animal}}</i>
+      </li>
+    </ol>
   </div>
 </div>

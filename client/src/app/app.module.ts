@@ -62,6 +62,7 @@ const routes: Routes = [
     CompanyCreateComponent,
     CompaniesComponent,
     CompanyComponent,
+
   ],
   imports: [
     BrowserModule,

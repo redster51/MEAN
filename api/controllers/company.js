@@ -94,3 +94,16 @@ module.exports.getSearch = function (req, res) {
         Company.find() //mongoose fulltext search...
     }
 };
+
+module.exports.addDonate = function(req, res) {
+    if (!req) {
+        res.status(401).json({msg: 'Donate do not worked'})
+    } else {
+        Company.findOneAndUpdate({name: req.body.name}, {$inc: {collectedMoney: req.body.donate}}, function (err, company) {
+            if (err) {
+                return res.status(500).send({msg: err.message});
+            }
+            res.send(company.collectedMoney);
+        })
+    }
+};

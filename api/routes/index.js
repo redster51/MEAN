@@ -36,4 +36,5 @@ router.get('/companies', ctrlCompany.findAllCompanies);
 router.get('/company/:id', ctrlCompany.findCompany);
 router.post('/addRating', ctrlCompany.addRating);
 router.get('/getRating/:id', ctrlCompany.getRating);
+router.post('/donate', ctrlCompany.addDonate);
 module.exports = router;

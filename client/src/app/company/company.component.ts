@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {AuthenticationService} from "../authentication.service";
 import {DomSanitizer} from "@angular/platform-browser";
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-company',
@@ -14,8 +15,9 @@ export class CompanyComponent implements OnInit {
   loading;
   displayURL;
   rate: number;
-
-  constructor(private route: ActivatedRoute, private auth: AuthenticationService, private sanitizer: DomSanitizer) {
+  donate: number;
+  constructor(private route: ActivatedRoute, private auth: AuthenticationService, private sanitizer: DomSanitizer,
+              public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -53,4 +55,6 @@ export class CompanyComponent implements OnInit {
       console.log(r);
     });
   }
+
+
 }

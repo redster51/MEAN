@@ -14,7 +14,7 @@ export class CompanyComponent implements OnInit {
   loading;
   displayURL;
   rate: number;
-  donate: number = 100;
+  value: number;
 
   constructor(private route: ActivatedRoute, private auth: AuthenticationService, private sanitizer: DomSanitizer) {
   }
@@ -56,8 +56,10 @@ export class CompanyComponent implements OnInit {
   }
 
   useDonate() {
-    let objectDonate: object = {name: this.company.name, donate: this.donate};
-    console.log(objectDonate);
-    this.auth.addDonate(objectDonate).subscribe(r => console.log(r));
+    if (this.value !== 0) {
+      let objectDonate: object = {name: this.company.name, userId: this.auth.getUserDetails()._id, donate: this.value};
+      console.log(objectDonate);
+      this.auth.addDonate(objectDonate).subscribe(r => console.log(r));
+    }
   }
 }

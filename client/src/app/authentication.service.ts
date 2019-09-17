@@ -28,7 +28,7 @@ export interface companyDetails {
   description: string,
   topic: string,
   video: string,
-  collectedMoney: number,
+  collectedMoney: Array<object>,
   needMoney: number,
   endDate: string,
   bonuses: Array<object>,

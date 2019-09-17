@@ -98,12 +98,19 @@ module.exports.getSearch = function (req, res) {
     }
 };
 
-module.exports.addDonate = function(req, res) {
-        if (!req) {
+module.exports.addDonate = function (req, res) {
+    if (!req) {
         console.log(req.body);
         res.status(401).json({msg: 'Donate do not worked'})
     } else {
-        Company.findOneAndUpdate({name: req.body.name}, {$inc: {collectedMoney: req.body.donate}}, function (err, company) {
+        Company.findOneAndUpdate({name: req.body.name}, {
+            $push: {
+                collectedMoney: {
+                    donate: req.body.donate,
+                    userId: req.body.userId
+                }
+            }
+        }, function (err, company) {
             if (err) {
                 return res.status(500).send({msg: err.message});
             }

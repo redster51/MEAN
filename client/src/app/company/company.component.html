@@ -15,7 +15,8 @@
         <div>
           <b>Description:</b><br>
           {{company.description}}
-        </div><br>
+        </div>
+        <br>
         <div fxFlex id="visor-video" *ngIf="displayURL">
           <iframe
             width="450"
@@ -25,14 +26,27 @@
         </div>
         <br>
         <div>
-          <b>Fundraising Date: </b> {{company.endDate}}
+          <b>Fundraising Date: </b> {{company.endDate}}<br>
+          <b>Fundraising money:</b> {{company.collectedMoney}}/{{company.needMoney}}<br>
+
         </div>
       </mat-card>
     </div>
   </div>
   <div class="sidenav">
-    <img class="image" src="{{company.imageUrl}}" alt="Image by company">
-    <bar-rating *ngIf="rate" [theme]="'stars'" [(rate)]="rate" [max]="5" (rateChange)="addRating()"></bar-rating>
-    <button mat-raised-button color="accent" (click)="useDonate()">Donate</button>
+    <mat-card>
+      <img class="image" src="{{company.imageUrl}}" alt="Image by company">
+      <bar-rating *ngIf="rate" [theme]="'stars'" [(rate)]="rate" [max]="5" (rateChange)="addRating()"></bar-rating>
+      <div class="donate">
+        <b>Want to help develop this company?</b><br>
+        <mat-form-field class="example-form-field">
+          <input matInput type="text" placeholder="Sum for donate" [(ngModel)]="value">
+          <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=0">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+        <button mat-raised-button color="accent" (click)="useDonate()">Donate</button>
+      </div>
+    </mat-card>
   </div>
 </div>

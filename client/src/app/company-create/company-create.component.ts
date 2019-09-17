@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthenticationService, companyDetails} from "../authentication.service";
 import {CloudinaryOptions, CloudinaryUploader} from "ng2-cloudinary";
+import {RouterModule} from "@angular/router";
 
 @Component({
   selector: 'app-company-create',
@@ -22,7 +23,7 @@ export class CompanyCreateComponent implements OnInit {
     description: '',
     topic: '',
     video: '',
-    collectedMoney: 0,
+    collectedMoney: [],
     needMoney: 0,
     endDate: Date.toString(),
     bonuses: [],
@@ -30,7 +31,7 @@ export class CompanyCreateComponent implements OnInit {
     imgUrl: ''
   };
 
-  constructor(private auth: AuthenticationService) { }
+  constructor(private auth: AuthenticationService, private router: RouterModule) { }
 
   ngOnInit() {
     this.company.creator = this.user._id;

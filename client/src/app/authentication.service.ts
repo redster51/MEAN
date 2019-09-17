@@ -28,6 +28,7 @@ export interface companyDetails {
   description: string,
   topic: string,
   video: string,
+  collectedMoney: number,
   needMoney: number,
   endDate: string,
   bonuses: Array<object>,
@@ -158,6 +159,6 @@ export class AuthenticationService {
   }
 
   public addDonate(donate): Observable<Object> {
-    return this.request('post', '/donate', donate);
+    return this.request('post', 'donate', donate);
   }
 }

@@ -47,13 +47,16 @@ module.exports.createCompany = function (req, res) {
             name: req.body.name,
             description: req.body.description,
             video: req.body.video,
+            collectedMoney: req.body.collectedMoney,
             needMoney: req.body.needMoney,
             endDate: req.body.endDate,
-            topic: req.body.topic
+            topic: req.body.topic,
+            bonuses: req.body.topic,
+            rating: req.body.rating,
+            imageUrl: req.body.imgUrl
         });
         company.save(function (err) {
             if (err) {
-                console.log(req.body);
                 return res.status(500).send({msg: err.message});
             }
             res.status(200);
@@ -96,14 +99,15 @@ module.exports.getSearch = function (req, res) {
 };
 
 module.exports.addDonate = function(req, res) {
-    if (!req) {
+        if (!req) {
+        console.log(req.body);
         res.status(401).json({msg: 'Donate do not worked'})
     } else {
         Company.findOneAndUpdate({name: req.body.name}, {$inc: {collectedMoney: req.body.donate}}, function (err, company) {
             if (err) {
                 return res.status(500).send({msg: err.message});
             }
-            res.send(company.collectedMoney);
+            res.send({collectedMoney: company._doc.collectedMoney});
         })
     }
 };

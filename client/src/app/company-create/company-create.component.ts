@@ -23,6 +23,7 @@ export class CompanyCreateComponent implements OnInit {
     description: '',
     topic: '',
     video: '',
+    collectedMoney: 0,
     needMoney: 0,
     endDate: Date.toString(),
     bonuses: [],

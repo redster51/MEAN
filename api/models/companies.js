@@ -24,6 +24,7 @@ let companySchema = new mongoose.Schema({
     },
     collectedMoney: {
         type: Number,
+        required: true,
         default: 0
     },
     needMoney: {
@@ -35,14 +36,15 @@ let companySchema = new mongoose.Schema({
         required: true
     },
     bonuses: {
-       type: Array
+       type: Array,
+        required: true
     },
     rating: {
-        type: Array
+        type: Array,
+        default: [{userId: '', rate: 0}]
     },
     imageUrl: {
         type: String,
-        required: true
     }
 });
 

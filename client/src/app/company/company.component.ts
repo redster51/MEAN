@@ -55,6 +55,8 @@ export class CompanyComponent implements OnInit {
   }
 
   useDonate() {
-    this.auth.addDonate({name: this.company.name, donate: this.donate}).subscribe(r => console.log(r));
+    let objectDonate: object = {name: this.company.name, donate: this.donate};
+    console.log(objectDonate);
+    this.auth.addDonate(objectDonate).subscribe(r => console.log(r));
   }
 }

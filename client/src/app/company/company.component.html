@@ -32,8 +32,7 @@
   </div>
   <div class="sidenav">
     <img class="image" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Image by company">
-    <bar-rating [theme]="'stars'" [(rate)]="rate" [max]="5" (rateChange)="addRating()"></bar-rating>
+    <bar-rating *ngIf="rate" [theme]="'stars'" [(rate)]="rate" [max]="5" (rateChange)="addRating()"></bar-rating>
     <button mat-raised-button color="accent">Donate</button>
   </div>
 </div>
-

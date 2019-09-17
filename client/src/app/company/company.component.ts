@@ -20,17 +20,24 @@ export class CompanyComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      console.log(params.get("id"));
       this.auth.getCompany(params.get("id")).subscribe(res => {
-        console.log(res);
         this.company = res[0];
         this.isCompanyAvailable = true;
         this.displayURL = this.sanitizer.bypassSecurityTrustResourceUrl(this.matchYoutubeUrl(this.company.video));
         this.auth.getRating(this.company._id).subscribe(rating => {
-          console.log("rating", rating);
+          console.log(rating);
+          this.rate = this.countRating(rating);
         })
       });
     });
+  }
+
+  countRating(ratings) {
+    let countRatings = 0;
+      for (let i = 0; i < ratings.length; i++) {
+        countRatings += ratings[i].rate;
+      }
+    return countRatings/ratings.length;
   }
 
   matchYoutubeUrl(url) {

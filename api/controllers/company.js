@@ -42,7 +42,6 @@ module.exports.createCompany = function (req, res) {
             msg: "Something was wrong"
         })
     } else {
-
         let company = new Company({
             _userId: req.body.creator,
             name: req.body.name,
@@ -66,7 +65,7 @@ module.exports.addRating = function (req, res) {    //have some questions...
     if (!req) {
         res.status(401).json({msg: 'Rating not added'})
     } else {
-        Company.findByIdAndUpdate(req.body.companyId, {$addToSet: {rating: req.body.rating}}, function (err, rating) {
+        Company.findByIdAndUpdate(req.body.companyId, {$push: {rating: req.body.rating}}, function (err, rating) {
             if (err) {
                 return res.status(500).send({msg: err.message});
             }
@@ -89,9 +88,9 @@ module.exports.getRating = function (req, res) {
 };
 
 module.exports.getSearch = function (req, res) {
-  if (!req) {
-      res.status(401).json({msg: 'Search do not work'})
-  } else {
-      Company.find() //mongoose fulltext search...
-  }
+    if (!req) {
+        res.status(401).json({msg: 'Search do not work'})
+    } else {
+        Company.find() //mongoose fulltext search...
+    }
 };

@@ -7,13 +7,15 @@ import {AuthenticationService, companyDetails} from './authentication.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  search: string = ' ';
+  text: string = '';
   companies: Array<companyDetails>;
   constructor(public auth: AuthenticationService) {
 
   }
 
-  getSearch() {
-    this.auth.getSearch(this.search).subscribe(r => console.log(r));
+  search() {
+    if (this.text) {
+      this.auth.search(this.text).subscribe(r => console.log(r));
+    }
   }
 }

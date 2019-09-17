@@ -154,8 +154,8 @@ export class AuthenticationService {
     return this.request('get', 'getRating/' + companyId);
   }
 
-  public getSearch(search: String): Observable<Object> {
-    return this.request('get', 'search/' + search);
+  public search(text: String): Observable<Object> {
+    return this.request('post', 'search', text);
   }
 
   public addDonate(donate): Observable<Object> {

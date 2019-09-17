@@ -5,15 +5,9 @@
       <span class="span" *ngIf="!auth.isLoggedIn()"><a mat-button routerLink="/login">Sign in</a></span>
       <span class="span"><a mat-button routerLink="/"><b><i>KickBarter</i></b></a></span>
       <span>
-        <mat-form-field>
-  <mat-select [formControl]="" placeholder="" #singleSelect>
-    <mat-option>
-      <ngx-mat-select-search [formControl]=""></ngx-mat-select-search>
-    </mat-option>
-    <mat-option *ngFor="let company" [value]="search">
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Search" [(ngModel)]="text" (ngModelChange)="search()">
+        </mat-form-field>
       </span>
       <span class="span" *ngIf="auth.isLoggedIn()"><a mat-button
                                                       routerLink="/profile">{{ auth.getUserDetails()?.name }}</a></span>

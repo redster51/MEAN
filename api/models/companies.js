@@ -20,7 +20,11 @@ let companySchema = new mongoose.Schema({
         required: true
     },
     video: {
-        type: String
+        type: String,
+    },
+    collectedMoney: {
+        type: Number,
+        default: 0
     },
     needMoney: {
         type: Number,

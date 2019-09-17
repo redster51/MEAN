@@ -6,12 +6,11 @@
       <span class="span"><a mat-button routerLink="/"><b><i>KickBarter</i></b></a></span>
       <span>
         <mat-form-field>
-  <mat-select [formControl]="" placeholder="Company" #singleSelect>
+  <mat-select [formControl]="" placeholder="" #singleSelect>
     <mat-option>
       <ngx-mat-select-search [formControl]=""></ngx-mat-select-search>
     </mat-option>
     <mat-option *ngFor="let company" [value]="search">
-      {{company.name}}
     </mat-option>
   </mat-select>
 </mat-form-field>

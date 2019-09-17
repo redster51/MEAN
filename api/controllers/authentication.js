@@ -12,7 +12,10 @@ module.exports.register = function (req, res) {
         if (user) return res.status(400).send({msg: 'The email address you have entered is already associated with another account.'});
 
         // Create and save the user
-        user = new User({name: req.body.name, email: req.body.email, password: req.body.password});
+        user = new User();
+        user.name = req.body.name;
+        user.email = req.body.email;
+        user.setPassword(req.body.password);
         user.save(function (err) {
             if (err) {
                 return res.status(500).send({msg: err.message});
@@ -55,8 +58,7 @@ module.exports.login = function (req, res) {
             {msg: 'The email address '
                     + req.body.email
                     + ' is not associated with any account. Double-check your email address and try again.'});
-        if (user.isBlocked) return res.status(401).send({msg: 'Banned!'});
-        if (user.password === req.body.password) {
+        if (user.validPassword(req.body.password)) {
             // Make sure the user has been verified
             if (!user.isVerified) return res.status(401).send({
                 type: 'not-verified',

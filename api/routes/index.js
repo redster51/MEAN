@@ -31,7 +31,7 @@ router.post('/delete', auth, ctrlProfile.deleteUsers);
 
 //work with companies
 router.post('/createCompany', auth, ctrlCompany.createCompany);
-router.post('/userCompanies/:id', auth, ctrlCompany.findCompaniesByUser);
+router.get('/userCompanies/:id', auth, ctrlCompany.findCompaniesByUser);
 router.get('/companies', ctrlCompany.findAllCompanies);
 router.get('/company/:id', ctrlCompany.findCompany);
 router.post('/addRating', ctrlCompany.addRating);

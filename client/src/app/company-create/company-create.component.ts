@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService, companyDetails} from "../authentication.service";
 import {CloudinaryOptions, CloudinaryUploader} from "ng2-cloudinary";
-import {RouterModule} from "@angular/router";
+import {Router, RouterModule} from "@angular/router";
 
 @Component({
   selector: 'app-company-create',
@@ -31,7 +31,8 @@ export class CompanyCreateComponent implements OnInit {
     imgUrl: ''
   };
 
-  constructor(private auth: AuthenticationService, private router: RouterModule) { }
+  constructor(private auth: AuthenticationService, private router: Router) {
+  }
 
   ngOnInit() {
     this.company.creator = this.user._id;

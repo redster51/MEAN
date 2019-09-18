@@ -24,7 +24,6 @@ let companySchema = new mongoose.Schema({
     },
     collectedMoney: {
         type: Array,
-        required: true,
     },
     needMoney: {
         type: Number,

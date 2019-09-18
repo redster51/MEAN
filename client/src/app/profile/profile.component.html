@@ -15,5 +15,14 @@
   </div>
 </div>
 <div class="companies">
-
+  <mat-list>
+    <h3 mat-subheader>Your companies</h3>
+    <mat-list-item *ngFor="let company of currentCompanies" (click)="goToCompany(company._id)">
+      <mat-icon mat-list-icon>shopping_basket</mat-icon>
+      <h4 mat-line>{{company.name}}</h4>
+      <p mat-line> {{company.endDate | date}} </p>
+      <p mat-line> {{sumOfDonates(company.collectedMoney)}} of {{company.needMoney}} money collected.</p>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
 </div>

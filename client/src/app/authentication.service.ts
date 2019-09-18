@@ -34,7 +34,7 @@ export interface companyDetails {
   endDate: string,
   bonuses: Array<object>,
   rating: Array<object>,
-  imgUrl: string
+  imgUrl: string,
 }
 
 @Injectable()
@@ -143,6 +143,10 @@ export class AuthenticationService {
     return this.request("get", "companies");
   }
 
+  public getCompaniesByUser(id): Observable<Object> {
+    return this.request('get', 'userCompanies/' + id);
+  }
+
   public getCompany(id: String): Observable<any> {
     return this.request("get", "company/" + id);
   }
@@ -164,5 +168,13 @@ export class AuthenticationService {
 
   public addDonate(donate): Observable<Object> {
     return this.request('post', 'donate', donate);
+  }
+
+  public addComment(comment): Observable<Object> {
+    return this.request('post', 'addComment', comment);
+  }
+
+  public addNews(news): Observable<Object> {
+    return this.request('post', 'addNews', news);
   }
 }

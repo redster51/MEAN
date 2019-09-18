@@ -10,39 +10,53 @@
 </div>
 <div class="container" *ngIf="isCompanyAvailable">
   <div class="right-content">
-      <mat-card>
-        <div>
-          <b>Description:</b><br>
-          {{company.description}}
-        </div>
-        <br>
-        <div fxFlex id="visor-video" *ngIf="displayURL">
-          <iframe
-            width="450"
-            height="350"
-            [src]="displayURL"
-          ></iframe>
-        </div>
-        <br>
-        <div>
-          <b>Fundraising Date: </b> {{company.endDate}}<br>
-          <b>Fundraising money:</b> {{sumOfDonates(company.collectedMoney)}} of {{company.needMoney}}<br>
-          <mat-progress-bar mode="determinate" value="{{sumInPercent(sumOfDonates(company.collectedMoney))}}"></mat-progress-bar>
-        </div>
-      </mat-card>
+    <mat-card>
+      <div>
+        <b>Description:</b><br>
+        {{company.description}}
+      </div>
+      <br>
+      <div fxFlex id="visor-video" *ngIf="displayURL">
+        <iframe
+          width="450"
+          height="350"
+          [src]="displayURL"
+        ></iframe>
+      </div>
+      <br>
+      <div>
+        <b>Fundraising Date: </b> {{company.endDate}}<br>
+        <b>Fundraising money:</b> {{sumOfDonates(company.collectedMoney)}} of {{company.needMoney}}<br>
+        <mat-progress-bar mode="determinate"
+                          value="{{sumInPercent(sumOfDonates(company.collectedMoney))}}"></mat-progress-bar>
+      </div>
+    </mat-card>
   </div>
   <div class="right-content-2">
-    <mat-card>
-      <mat-card-title>
-        NOVOSTI
-      </mat-card-title>
-      <mat-card-content>
-        <!--      tyt v cikle-->
-        <div>
-          novost 1
-        </div>
-      </mat-card-content>
+    <mat-card id="news-input" *ngIf="checkUserIsCreator(company._userId, user._id)">
+      <mat-form-field>
+        <input style="width: 50%" matInput placeholder="News title" [(ngModel)]="newsTitle">
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <textarea matInput placeholder="News" [(ngModel)]="newsText"></textarea>
+      </mat-form-field>
+      <button mat-raised-button (click)="addNews()" color="primary">Add</button>
     </mat-card>
+    <div class="list_items">
+      <mat-card *ngFor="let content of company.news" style="margin-top: 10px;">
+        <mat-card-content>
+          <div class="news_content">
+            <div class="news_title">
+              <b>{{content.title}}</b>
+              <span style="font-size: 10px; float: right">{{content.time}}</span>
+            </div>
+            <div class="news_content">
+              {{content.content}}
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
   <div class="sidenav">
     <mat-card>
@@ -61,15 +75,20 @@
     </mat-card>
   </div>
 </div>
-<!--      tyt v cikle-->
+
 <div style="margin-top: 10px" class="container" *ngIf="isCompanyAvailable">
   <div class="right-content">
-    <mat-card>
-      <div>
-        <b>Name</b>
-        <span style="float: right">2019:23</span>
-        <p>{{company.description}}</p>
-      </div>
-    </mat-card>
+    <mat-form-field class="full-width">
+      <textarea matInput placeholder="Leave a comment" [(ngModel)]="comment" (keyup.enter)="addComment()"></textarea>
+    </mat-form-field>
+    <div class="list_items">
+      <mat-card style="margin-top: 10px" *ngFor="let comment of company.comments">
+        <div>
+          <b>{{comment.userName}}</b>
+          <span style="float: right">{{comment.time}}</span>
+          <p>{{comment.text}}</p>
+        </div>
+      </mat-card>
+    </div>
   </div>
 </div>

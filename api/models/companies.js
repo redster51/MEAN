@@ -44,6 +44,12 @@ let companySchema = new mongoose.Schema({
     },
     imageUrl: {
         type: String,
+    },
+    comments: {
+        type: Array
+    },
+    news: {
+        type: Array
     }
 });
 

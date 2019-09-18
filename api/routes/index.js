@@ -31,12 +31,13 @@ router.post('/delete', auth, ctrlProfile.deleteUsers);
 
 //work with companies
 router.post('/createCompany', auth, ctrlCompany.createCompany);
-router.post('/findCompanies', auth, ctrlCompany.findCompaniesByUser);
+router.post('/userCompanies/:id', auth, ctrlCompany.findCompaniesByUser);
 router.get('/companies', ctrlCompany.findAllCompanies);
 router.get('/company/:id', ctrlCompany.findCompany);
 router.post('/addRating', ctrlCompany.addRating);
 router.get('/getRating/:id', ctrlCompany.getRating);
 router.post('/donate', ctrlCompany.addDonate);
 router.get('/search/:text', ctrlCompany.search);
-
+router.post('/addComment', ctrlCompany.addComment);
+router.post('/addNews', ctrlCompany.addNews);
 module.exports = router;

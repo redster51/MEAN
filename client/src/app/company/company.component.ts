@@ -10,11 +10,14 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class CompanyComponent implements OnInit {
   company;
+  private user = this.auth.getUserDetails();
   isCompanyAvailable: boolean = false;
   displayURL;
-  rate: number;
-  value: number;
-
+  private rate: number;
+  private value: number;
+  private comment: string;
+  private newsText: string;
+  private newsTitle: string;
   constructor(private route: ActivatedRoute, private auth: AuthenticationService, private sanitizer: DomSanitizer) {
   }
 
@@ -50,7 +53,43 @@ export class CompanyComponent implements OnInit {
     this.auth.addRating(companyId, rating).subscribe(r => this.ngOnInit());
   }
 
-  useDonate() {
+  addComment() {
+    let comment = {userId: this.user._id, userName: this.user.name, time: CompanyComponent.getCurrentTime(), text: this.comment};
+    this.auth.addComment({companyId: this.company._id, comment: comment}).subscribe(r => {
+      console.log(r);
+      this.ngOnInit();
+    });
+    this.comment = ''
+  }
+
+  checkUserIsCreator(creatorOfCompany, user){
+    return creatorOfCompany === user;
+  }
+
+  addNews() {
+    let newsObject = {time: CompanyComponent.getCurrentTime(), content: this.newsText, title: this.newsTitle};
+    this.auth.addNews({companyId: this.company._id, text: newsObject}).subscribe(r => {
+      console.log(r);
+      this.ngOnInit();
+    });
+    this.newsText = '';
+    this.newsTitle = '';
+  }
+
+  private static getCurrentTime(): string{
+    let date = new Date();
+
+    let options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    };
+    return date.toLocaleDateString('en-US', options)
+  }
+
+  useDonate():void {
     if (this.value !== 0) {
       let objectDonate: object = {name: this.company.name, userId: this.auth.getUserDetails()._id, donate: this.value};
       this.auth.addDonate(objectDonate).subscribe(r => this.ngOnInit());

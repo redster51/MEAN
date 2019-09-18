@@ -23,14 +23,15 @@ module.exports.findCompany = function (req, res) {
     })
 };
 
-module.exports.findCompaniesByUser = function (req, res, name) {
+module.exports.findCompaniesByUser = function (req, res) {
+    console.log('id', req.params._id);
     if (!res) {
         res.status(401).json({
                 msg: "Companies not find"
             }
         )
     } else {
-        Company.find({creator: name}, function (err, companies) {
+        Company.find({_id: req.params.id}, function (err, companies) {
             res.send(companies);
         })
     }
@@ -53,7 +54,9 @@ module.exports.createCompany = function (req, res) {
             topic: req.body.topic,
             bonuses: req.body.topic,
             rating: req.body.rating,
-            imageUrl: req.body.imgUrl
+            imageUrl: req.body.imgUrl,
+            comments: [],
+            news: []
         });
         company.save(function (err) {
             if (err) {
@@ -64,7 +67,7 @@ module.exports.createCompany = function (req, res) {
     }
 };
 
-module.exports.addRating = function (req, res) {    //have some questions...
+module.exports.addRating = function (req, res) {
     if (!req) {
         res.status(401).json({msg: 'Rating not added'})
     } else {
@@ -95,10 +98,10 @@ module.exports.search = function (req, res) {
         res.status(401).json({msg: 'Search do not work'})
     } else {
         Company.find(
-            { $text : { $search : req.params.text } },
-            { score : { $meta: 'textScore' }})
-            .sort({ score : { $meta : 'textScore' } })
-            .exec(function(err, results) {
+            {$text: {$search: req.params.text}},
+            {score: {$meta: 'textScore'}})
+            .sort({score: {$meta: 'textScore'}})
+            .exec(function (err, results) {
                 res.send(results);
             });
     }
@@ -106,7 +109,6 @@ module.exports.search = function (req, res) {
 
 module.exports.addDonate = function (req, res) {
     if (!req) {
-        console.log(req.body);
         res.status(401).json({msg: 'Donate do not worked'})
     } else {
         Company.findOneAndUpdate({name: req.body.name}, {
@@ -121,6 +123,32 @@ module.exports.addDonate = function (req, res) {
                 return res.status(500).send({msg: err.message});
             }
             res.send({collectedMoney: company._doc.collectedMoney});
+        })
+    }
+};
+
+module.exports.addComment = function (req, res) {
+    if (!req) {
+        res.status(401).json({msg: 'Comment not added'})
+    } else {
+        Company.findByIdAndUpdate(req.body.companyId, {$push: {comments: req.body.text}}, function (err, comments) {
+            if (err) {
+                return res.status(500).send({msg: err.message});
+            }
+            res.send(comments);
+        })
+    }
+};
+
+module.exports.addNews = function (req, res) {
+    if (!req) {
+        res.status(401).json({msg: 'News not added'})
+    } else {
+        Company.findByIdAndUpdate(req.body.companyId, {$push: {news: req.body.text}}, function (err, company) {
+            if (err) {
+                return res.status(500).send({msg: err.message});
+            }
+            res.send(company);
         })
     }
 };

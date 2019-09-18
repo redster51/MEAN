@@ -51,12 +51,36 @@ img {
   margin-right: 1%;
   padding: 0 10px;
   min-width: 510px;
+
 }
 
 .right-content-2 {
   width: 100%;
 }
 
-.donate {
+.full-width {
+  width: 100%;
+}
 
+.list_items {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+#news-input {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+}
+
+.news_content {
+  display: flex;
+  flex-direction: column;
+}
+
+.news_title {
+  margin-bottom: 10px;
 }

@@ -1,7 +1,7 @@
 <div class="tool">
   <mat-toolbar color="primary" class="bar">
     <mat-toolbar-row>
-      <span>Registration</span>
+      <span>{{'register' | translate}}</span>
     </mat-toolbar-row>
   </mat-toolbar>
 </div>
@@ -9,22 +9,22 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-      <h1>Register</h1>
-      <p class="lead">Already a member? Please <a routerLink="/login">log in</a> instead.</p>
+      <h1>{{'register' | translate}}</h1>
+      <p class="lead">{{'registerMess' | translate}}<a routerLink="/login">{{'registerMess2' | translate}}</a>{{'loginMess3' | translate}}</p>
       <form (submit)="register()">
         <div class="form-group">
-          <label>Full name</label>
-          <input matInput name="name" placeholder="Enter your name" [(ngModel)]="credentials.name">
+          <label>{{'registerName' | translate}}</label>
+          <input matInput name="name" placeholder="{{'registerName2' | translate}}" [(ngModel)]="credentials.name">
         </div>
         <div class="form-group">
-          <label>Email address</label>
-          <input matInput name="email" placeholder="Enter email" [(ngModel)]="credentials.email">
+          <label>{{'registerEmail' | translate}}</label>
+          <input matInput name="email" placeholder="{{'loginEmail' | translate}}" [(ngModel)]="credentials.email">
         </div>
         <div class="form-group">
-          <label>Password</label>
-          <input matInput name="password" placeholder="Password" [(ngModel)]="credentials.password">
+          <label>{{'password' | translate}}</label>
+          <input matInput name="password" placeholder="{{'password' | translate}}" [(ngModel)]="credentials.password">
         </div>
-        <button type="submit" mat-raised-button color="primary">Register!</button>
+        <button type="submit" mat-raised-button color="primary">{{'register' | translate}}!</button>
       </form>
     </div>
   </div>

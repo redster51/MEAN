@@ -2,5 +2,16 @@
   "createCompany": "Создать компанию",
   "search": "Поиск",
   "logout": "Выйти",
-  "login": "Зайти"
+  "login": "Зайти",
+  "loginMess": "Не зарегистрирован? Пожалуйста",
+  "loginMess2": " зарегистрируйся",
+  "loginMess3": " сейчас.",
+  "loginEmail": "Введите емайл",
+  "password": "Введите пароль",
+  "register": "Регистрация",
+  "registerMess": "Уже зарегистрирован? Пожалуйста ",
+  "registerMess2": " войдите",
+  "registerName": "Полное имя",
+  "registerEmail": "Емайл адрес",
+  "registerName2": "Введите свое имя"
 }

@@ -2,5 +2,16 @@
   "createCompany": "Create Company",
   "search": "Search",
   "logout": "Logout",
-  "login": "Sign In"
+  "login": "Sign In",
+  "loginMess": "Not a member? Please",
+  "loginMess2": " register",
+  "loginMess3": " instead.",
+  "loginEmail": "Enter email",
+  "password": "password",
+  "register": "Register",
+  "registerMess": "Already a member? Please ",
+  "registerMess2": " log in",
+  "registerName": "Full name",
+  "registerEmail": "Email address",
+  "registerName2": "Enter your name"
 }

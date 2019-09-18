@@ -131,7 +131,7 @@ module.exports.addComment = function (req, res) {
     if (!req) {
         res.status(401).json({msg: 'Comment not added'})
     } else {
-        Company.findByIdAndUpdate(req.body.companyId, {$push: {comments: req.body.text}}, function (err, comments) {
+        Company.findByIdAndUpdate(req.body.companyId, {$push: {comments: req.body.comment}}, function (err, comments) {
             if (err) {
                 return res.status(500).send({msg: err.message});
             }

@@ -31,7 +31,7 @@ module.exports.findCompaniesByUser = function (req, res) {
             }
         )
     } else {
-        Company.find({_id: req.params.id}, function (err, companies) {
+        Company.find({_userId: req.params.id}, function (err, companies) {
             res.send(companies);
         })
     }

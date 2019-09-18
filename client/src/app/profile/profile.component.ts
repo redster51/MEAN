@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { AuthenticationService, UserDetails } from '../authentication.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { AuthenticationService, UserDetails } from '../authentication.service';
   styles: ['.container{ margin-top: 20px;}'],
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   details: UserDetails;
   currentCompanies;
   constructor(private auth: AuthenticationService) {}
@@ -14,15 +14,12 @@ export class ProfileComponent {
   ngOnInit() {
     this.auth.profile().subscribe(user => {
       this.details = user;
-      this.currentCompanies = this.getCompaniesByUser(user._id);
-      console.log('user', user._id);
+      this.auth.getCompaniesByUser(user._id).subscribe(r => {
+        console.log(r);
+        this.currentCompanies = r;
+      });
     }, (err) => {
       console.error(err);
     });
-  }
-
-  getCompaniesByUser(id) {
-    console.log(id);
-    this.auth.getCompaniesByUser(id).subscribe(r => console.log(r));
   }
 }

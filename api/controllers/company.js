@@ -24,7 +24,7 @@ module.exports.findCompany = function (req, res) {
 };
 
 module.exports.findCompaniesByUser = function (req, res) {
-    console.log('id', req.params._id);
+    console.log('id', req.params.id);
     if (!res) {
         res.status(401).json({
                 msg: "Companies not find"

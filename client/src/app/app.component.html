@@ -1,17 +1,19 @@
 <div class="app-content">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span class="span" *ngIf="auth.isLoggedIn()"><button mat-button routerLink="/create-company">Create Company</button></span>
-      <span class="span" *ngIf="!auth.isLoggedIn()"><button mat-button routerLink="/login">Sign in</button></span>
+      <span class="span" *ngIf="auth.isLoggedIn()"><button mat-button routerLink="/create-company">{{"createCompany" | translate}}</button></span>
+      <span class="span" *ngIf="!auth.isLoggedIn()"><button mat-button routerLink="/login">{{"login" | translate}}</button></span>
       <span class="span"><button mat-button routerLink="/"><b><i>KickBarter</i></b></button></span>
       <span>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Search" [(ngModel)]="text" (ngModelChange)="search()">
+          <input matInput  placeholder="{{'search' | translate}}" [(ngModel)]="text" (ngModelChange)="search()">
         </mat-form-field>
       </span>
       <span class="span" *ngIf="auth.isLoggedIn()"><button mat-button
                                                       routerLink="/profile">{{ auth.getUserDetails()?.name }}</button></span>
-      <span class="span" *ngIf="auth.isLoggedIn()"><button mat-button (click)="auth.logout()">Logout</button></span>
+      <span class="span" *ngIf="auth.isLoggedIn()"><button mat-button (click)="auth.logout()">{{"logout" | translate}}</button></span>
+      <span class="span" *ngIf="en"><button mat-button (click)="toRu()">Ru</button></span>
+      <span class="span" *ngIf="ru"><button mat-button (click)="toEn()">En</button></span>
     </mat-toolbar-row>
   </mat-toolbar>
 </div>

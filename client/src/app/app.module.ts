@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 
@@ -37,6 +37,12 @@ import {FileUploadModule} from "ng2-file-upload";
 import {BarRatingModule} from "ngx-bar-rating";
 import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 const routes: Routes = [
   {path: '', component: CompaniesComponent},
@@ -87,7 +93,14 @@ const routes: Routes = [
     BarRatingModule,
     ReactiveFormsModule,
     NgxMatSelectSearchModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory, // exported factory function needed for AoT compilation
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     AuthenticationService,

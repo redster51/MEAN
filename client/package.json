@@ -25,6 +25,8 @@
     "@angular/platform-browser-dynamic": "^5.2.2",
     "@angular/router": "^5.2.2",
     "@bl4y/mat-searchable": "^1.0.5",
+    "@ngx-translate/core": "^9.1.1",
+    "@ngx-translate/http-loader": "^2.0.1",
     "@types/socket.io-client": "~1.4.29",
     "angular-alert-module": "^2.0.3",
     "angular-search": "^0.2.1",

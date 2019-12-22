@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {map} from 'rxjs/operators/map';
 import {Router} from '@angular/router';
-import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 export interface UserDetails {
   _id: string;

@@ -31,22 +31,22 @@ module.exports.register = function (req, res) {
                 }
 
                 // Send the email
-                let transporter = nodemailer.createTransport({
-                    service: 'Gmail',
-                    auth: {user: '321node.ver123@gmail.com', pass: '`1q2w3e4r'}
-                });
-                let mailOptions = {
-                    from: 'no-reply@yourwebapplication.com',
-                    to: user.email,
-                    subject: 'Account Verification Token',
-                    text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n'
-                };
-                transporter.sendMail(mailOptions, function (err) {
-                    if (err) {
-                        return res.status(500).send({msg: err.message});
-                    }
-                    res.status(200);
-                });
+                // let transporter = nodemailer.createTransport({
+                //     service: 'Gmail',
+                //     auth: {user: '321node.ver123@gmail.com', pass: '`1q2w3e4r'}
+                // });
+                // let mailOptions = {
+                //     from: 'no-reply@yourwebapplication.com',
+                //     to: user.email,
+                //     subject: 'Account Verification Token',
+                //     text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n'
+                // };
+                // transporter.sendMail(mailOptions, function (err) {
+                //     if (err) {
+                //         return res.status(500).send({msg: err.message});
+                //     }
+                // });
+                res.status(200);
             });
         });
     });
@@ -60,10 +60,10 @@ module.exports.login = function (req, res) {
                     + ' is not associated with any account. Double-check your email address and try again.'});
         if (user.validPassword(req.body.password)) {
             // Make sure the user has been verified
-            if (!user.isVerified) return res.status(401).send({
-                type: 'not-verified',
-                msg: 'Your account has not been verified.'
-            });
+            // if (!user.isVerified) return res.status(401).send({
+            //     type: 'not-verified',
+            //     msg: 'Your account has not been verified.'
+            // });
 
             // Login successful, write token, and send back user
             res.send({token: user.generateJwt(), user: user.toJSON()});
